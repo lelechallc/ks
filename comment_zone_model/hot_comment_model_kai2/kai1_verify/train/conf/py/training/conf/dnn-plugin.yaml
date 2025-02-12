@@ -1,0 +1,322 @@
+ada_decay_rate: 0.99999
+ada_epsilon: 1e-8
+avg_decay_rate: 0.999993
+back_propagate_input: true
+dense_grad: dense_grad_for_fetch:0
+dense_init_val: dense_init_val_for_fetch:0
+embedding:
+  create_threshold: 0
+  initial_g2sum: 3
+  initial_range: 2
+  learning_rate: 0.05
+  slots_config:
+  - dim: 4
+    dtype: float32
+    input_name: user_embedding
+    slots: 101 102
+    update_type: gradient
+  - dim: 64
+    dtype: float32
+    input_name: c_id_embedding
+    slots: 201 202
+    update_type: gradient
+  - dim: 32
+    dtype: float32
+    input_name: c_info_embedding
+    slots: 203 204 205 206 207 209
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: position_embedding
+    slots: '208'
+    update_type: gradient
+  version_aware: true
+  weight_bounds:
+  - -10
+  - 10
+extra_params: []
+global_init_range: 0.2
+grad_scale: truediv:0
+graph: ./conf/graph.pb
+graph_extra_outputs: {}
+graph_output_labels:
+- Reshape_10:0
+- Reshape_8:0
+- Reshape_9:0
+graph_q_valid:
+  expand_predict: Reshape_11:0
+  like_predict: Reshape_11:0
+  reply_predict: Reshape_11:0
+graph_targets:
+- opt
+graph_tensor_mapping:
+  expand_predict: expand_xtr/dense_3/Sigmoid:0
+  like_predict: like_xtr/dense_3/Sigmoid:0
+  reply_predict: reply_xtr/dense_3/Sigmoid:0
+hyperparameter_kconf: null
+is_train_placeholder: is_train:0
+learning_rate: 5.0e-06
+local_init_op: ''
+loss_scale_placeholder: loss_scale:0
+mom_decay_rate: 0.999
+output_hidden_units: update_input continue_normlized_input slide_embedding slide_wide
+  watch_time_wide position_weight_input
+param:
+- coln: 256
+  name: expand_xtr/dense/kernel
+  rown: 336
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense/bias
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+- coln: 128
+  name: expand_xtr/dense_1/kernel
+  rown: 256
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense_1/bias
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+- coln: 64
+  name: expand_xtr/dense_2/kernel
+  rown: 128
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense_2/bias
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense_3/kernel
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense_3/bias
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+- coln: 256
+  name: like_xtr/dense/kernel
+  rown: 336
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense/bias
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+- coln: 128
+  name: like_xtr/dense_1/kernel
+  rown: 256
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense_1/bias
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+- coln: 64
+  name: like_xtr/dense_2/kernel
+  rown: 128
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense_2/bias
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense_3/kernel
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense_3/bias
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+- coln: 256
+  name: reply_xtr/dense/kernel
+  rown: 336
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense/bias
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+- coln: 128
+  name: reply_xtr/dense_1/kernel
+  rown: 256
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense_1/bias
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+- coln: 64
+  name: reply_xtr/dense_2/kernel
+  rown: 128
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense_2/bias
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense_3/kernel
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense_3/bias
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+- coln: 256
+  name: expand_xtr/dense/kernel/Adagrad
+  rown: 336
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense/bias/Adagrad
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+- coln: 128
+  name: expand_xtr/dense_1/kernel/Adagrad
+  rown: 256
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense_1/bias/Adagrad
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+- coln: 64
+  name: expand_xtr/dense_2/kernel/Adagrad
+  rown: 128
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense_2/bias/Adagrad
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense_3/kernel/Adagrad
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: expand_xtr/dense_3/bias/Adagrad
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+- coln: 256
+  name: like_xtr/dense/kernel/Adagrad
+  rown: 336
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense/bias/Adagrad
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+- coln: 128
+  name: like_xtr/dense_1/kernel/Adagrad
+  rown: 256
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense_1/bias/Adagrad
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+- coln: 64
+  name: like_xtr/dense_2/kernel/Adagrad
+  rown: 128
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense_2/bias/Adagrad
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense_3/kernel/Adagrad
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: like_xtr/dense_3/bias/Adagrad
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+- coln: 256
+  name: reply_xtr/dense/kernel/Adagrad
+  rown: 336
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense/bias/Adagrad
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+- coln: 128
+  name: reply_xtr/dense_1/kernel/Adagrad
+  rown: 256
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense_1/bias/Adagrad
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+- coln: 64
+  name: reply_xtr/dense_2/kernel/Adagrad
+  rown: 128
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense_2/bias/Adagrad
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense_3/kernel/Adagrad
+  rown: 64
+  scale_by_rown: true
+- coln: 1
+  name: reply_xtr/dense_3/bias/Adagrad
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+q_label:
+- auc_set: auc
+  label: Reshape_8:0
+  name: expand_predict
+- auc_set: auc
+  label: Reshape_9:0
+  name: like_predict
+- auc_set: auc
+  label: Reshape_10:0
+  name: reply_predict
+q_names: expand_predict like_predict reply_predict
+sparse_grad: sparse_grad_for_fetch:0
+sparse_grad_scale: truediv_1:0
+summary:
+- len: 1912
+  name: base_summary
+- len: 2072
+  name: stub_summary
+summary_decay_rate: 0.999999
+summary_init_n: 1e4
+summary_init_squared_sum: 1e4
+summary_squared_sum_epsilon: 1e-4
+test_layers_at_joining: join join_forward update update_forward
+test_layers_at_updating: update update_forward
+test_mode: false
+train_layers_at_joining: join
+train_layers_at_updating: update
+use_sparse_indice: false
+vec_input:
+- common: false
+  dim: 1
+  name: expandAction_v
+- common: false
+  dim: 1
+  name: likeAction_v
+- common: false
+  dim: 1
+  name: replyAction_v
+- common: false
+  dim: 1
+  name: sample_weight
+with_kai: true

@@ -1,0 +1,1074 @@
+{
+  "_CONFIG_VERSION": "9dd6547f6853daad5ab3d14decf1eb66_local",
+  "_DRAGONFLY_CREATE_TIME": "2024-04-02 21:41:13",
+  "_DRAGONFLY_VERSION": "0.8.0",
+  "kess_config": {},
+  "pipeline_manager_config": {
+    "base_pipeline": {
+      "processor": {
+        "_branch_controller_A93BFE5B": {
+          "$branch_start": "_branch_controller_A93BFE5B",
+          "$code_info": "[if] A93BFE5B cofea_reader.py in <module>(): read_data_valid = DataReaderFlow(name=\"read_data\")",
+          "$metadata": {
+            "$input_common_attrs": [
+              "retrieve_num"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "_if_control_attr_1"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "_if_control_attr_1"
+          ],
+          "for_branch_control": true,
+          "function_for_common": "evaluate",
+          "import_common_attr": [
+            "retrieve_num"
+          ],
+          "lua_script": "function evaluate() if (retrieve_num <= 0) then return false else return true end end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "convert_csv_to_tf_sequence_example_429A17": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "csv_sample_data"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "tf_sequence_example"
+            ],
+            "$output_item_attrs": []
+          },
+          "column_separator": "|",
+          "common_attrs": [
+            {
+              "column_index": 16,
+              "column_name": "age_segment",
+              "type": "int"
+            },
+            {
+              "column_index": 17,
+              "column_name": "gender",
+              "type": "int"
+            },
+            {
+              "column_index": 18,
+              "column_name": "device_id",
+              "type": "string"
+            },
+            {
+              "column_index": 19,
+              "column_name": "photo_id",
+              "type": "int"
+            },
+            {
+              "column_index": 20,
+              "column_name": "photo_author_id",
+              "type": "int"
+            }
+          ],
+          "from_extra_var": "csv_sample_data",
+          "item_attrs": [
+            {
+              "column_index": 0,
+              "column_name": "comment_id",
+              "type": "int"
+            },
+            {
+              "column_index": 1,
+              "column_name": "author_id",
+              "type": "int"
+            },
+            {
+              "column_index": 2,
+              "column_name": "like_cnt",
+              "type": "int"
+            },
+            {
+              "column_index": 3,
+              "column_name": "reply_cnt",
+              "type": "int"
+            },
+            {
+              "column_index": 4,
+              "column_name": "dislike_cnt",
+              "type": "int"
+            },
+            {
+              "column_index": 5,
+              "column_name": "realshow_cnt",
+              "type": "int"
+            },
+            {
+              "column_index": 6,
+              "column_name": "minute_diff",
+              "type": "float"
+            },
+            {
+              "column_index": 7,
+              "column_name": "ltr",
+              "type": "float"
+            },
+            {
+              "column_index": 8,
+              "column_name": "rtr",
+              "type": "float"
+            },
+            {
+              "column_index": 9,
+              "column_name": "showaction",
+              "type": "int"
+            },
+            {
+              "column_index": 10,
+              "column_name": "replyaction",
+              "type": "int"
+            },
+            {
+              "column_index": 11,
+              "column_name": "likeaction",
+              "type": "int"
+            },
+            {
+              "column_index": 12,
+              "column_name": "expandaction",
+              "type": "int"
+            },
+            {
+              "column_index": 13,
+              "column_name": "audienceaction",
+              "type": "int"
+            },
+            {
+              "column_index": 14,
+              "column_name": "reportaction",
+              "type": "int"
+            },
+            {
+              "column_index": 15,
+              "column_name": "comment_content_segs",
+              "type": "string_list"
+            }
+          ],
+          "item_separator": ",",
+          "list_separator": " ",
+          "save_result_to": "tf_sequence_example",
+          "type_name": "OfflineCsvToTfSequenceExampleEnricher"
+        },
+        "count_reco_result_667B8B": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "retrieve_num"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "retrieve_num",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "count_reco_result_7BD7E7": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "send_sample_cnt"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "send_sample_cnt",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "enrich_attr_by_lua_17B265": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "audienceaction",
+              "expandaction",
+              "likeaction",
+              "replyaction",
+              "reportaction",
+              "showaction"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "sample_weight"
+            ]
+          },
+          "export_item_attr": [
+            "sample_weight"
+          ],
+          "function_for_item": "cal_sample_weight",
+          "import_item_attr": [
+            "showaction",
+            "expandaction",
+            "replyaction",
+            "likeaction",
+            "audienceaction",
+            "reportaction"
+          ],
+          "lua_script": "function cal_sample_weight()\n        local weight = showaction * 1.0\n        if (expandaction or 0) > 0 then\n          weight = weight + 3.0\n        end\n        if (replyaction or 0) > 0 then\n          weight = weight + 5.0\n        end\n        if (likeaction or 0) > 0 then\n          weight = weight + 3.0\n        end\n        if (audienceaction or 0) > 0 then\n          weight = weight + 3.0\n        end\n        if (reportaction or 0) > 0 then\n          weight = weight + 8.0\n        end\n        return weight\n      end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_4317FB": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "like_cnt",
+              "ltr",
+              "reply_cnt",
+              "rtr"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "fre_grouped_like_cnt",
+              "fre_grouped_ltr",
+              "fre_grouped_reply_cnt",
+              "fre_grouped_rtr"
+            ]
+          },
+          "export_item_attr": [
+            "fre_grouped_ltr",
+            "fre_grouped_rtr",
+            "fre_grouped_like_cnt",
+            "fre_grouped_reply_cnt"
+          ],
+          "function_for_item": "fre_group",
+          "import_item_attr": [
+            "ltr",
+            "rtr",
+            "like_cnt",
+            "reply_cnt"
+          ],
+          "lua_script": "function bisect_left(a, x, left, right)\n    lo = left or 1\n    hi = right or nil\n\n    while lo < hi do\n        mid = math.floor((lo+hi) / 2)\n        if a[mid] < x then\n            lo = mid+1\n        else\n            hi = mid\n        end\n    end\n    return lo\nend\n\nfunction fre_group()\n\n    local fre_grouped_ltr = 0\n    local fre_grouped_rtr = 0\n    local fre_grouped_like_cnt = 0\n    local fre_grouped_reply_cnt = 0\n\n    local ltr = ltr or 0.0\n    local rtr = rtr or 0.0\n    local like_cnt = like_cnt * 1.0 or 0.0\n    local reply_cnt = reply_cnt * 1.0 or 0.0\n\n    ltr_points = {\n        4.611391905620465E-4,9.465071941019713E-4,0.002829738745836061,0.004712970297570151,0.00659620184930424,0.008479433401038329,0.01036266495277242,0.012245896504506509,0.014647927391460432,0.01956825682436671,0.024488586257272987,0.029676983207143074,0.037402305308336194,0.045461649608510644,0.06031423219105372,0.08167816312422772,0.10940847388881433,0.18161593327706207,0.32845072203711695\n    }\n    ltr_points_2 = {\n        0.005092916708643003,0.005788623256095618,0.006717723787283487,0.007646824318471357,0.008575924849659217,0.009505025380847087,0.010434125912034957,0.011363226443222817,0.012292326974410687,0.013221427505598555,0.014150528036786425,0.015079628567974294,0.016008729099162164,0.016937829630350024,0.017866930161537894,0.018796030692725764,0.019725131223913624,0.020654231755101494,0.021583332286289364,0.022512432817477224,0.02370372131138414,0.026874284456362856,0.03004484760134157,0.033215410746320284,0.036385973891298995,0.039556537036277706,0.042727100181256396,0.04661285804066596,0.050592865043579315,0.05457287204649264,0.05868145297921094,0.06320846616426332,0.0677354793493157,0.07226249253436809,0.07879887713302959,0.08842296017651365,0.09908330082485994,0.11299756069154626,0.12581580920311125,0.14144046729295925,0.16192456504160035,0.19258947227177006,0.23335924266374605,0.3156758221203441,0.36205636522067175,0.4931074646863584,0.9865333536266019\n    }\n    ltr_points_3 = {\n        4.611391905620465E-4,9.465071941019713E-4,0.002829738745836061,0.004712970297570151,0.005092916708643003,0.005788623256095618,0.006717723787283487,0.007646824318471357,0.008575924849659217,0.009505025380847087,0.010434125912034957,0.011363226443222817,0.012292326974410687,0.013221427505598555,0.014150528036786425,0.015079628567974294,0.016008729099162164,0.016937829630350024,0.017866930161537894,0.018796030692725764,0.019725131223913624,0.020654231755101494,0.021583332286289364,0.022512432817477224,0.02370372131138414,0.026874284456362856,0.03004484760134157,0.033215410746320284,0.036385973891298995,0.039556537036277706,0.042727100181256396,0.04661285804066596,0.050592865043579315,0.05457287204649264,0.05868145297921094,0.06320846616426332,0.0677354793493157,0.07226249253436809,0.07879887713302959,0.08842296017651365,0.09908330082485994,0.11299756069154626,0.12581580920311125,0.14144046729295925,0.16192456504160035,0.19258947227177006,0.23335924266374605,0.3156758221203441,0.36205636522067175,0.4931074646863584,0.9865333536266019\n    }\n    -- len(ltr_points_3) = 51\n\n    fre_grouped_ltr = bisect_left(ltr_points_3, ltr, 1, 52)\n\n    rtr_points = {\n        5.988891143936782E-6,3.505973704507069E-5,3.4883478142729593E-4,6.642843520184226E-4,0.001003481161352901,0.0014029299931929745,0.0020219949587303725,0.002745040120670573,0.0038185189189764816,0.004975259807350955,0.006240332959744512,0.007747836210557175,0.009303682959701772,0.010986044142621144,0.013071149179277456,0.0151899212200051,0.017702896399381517,0.020384168407850838,0.02353794519437755,0.027548427264058543,0.03209636818050975,0.03809163672925864,0.045313585278343574,0.055199934322994,0.07083243780084646,0.09037671863697162,0.124430300444021,0.19948238411688737,0.33308604128607544\n    }\n    rtr_points_2 = {\n        4.4176470167726646E-4,4.976283023298114E-4,6.235180807498897E-4,7.494078591699681E-4,8.752976375900468E-4,0.001001187416010125,0.0011270771944302035,0.0012529669728502818,0.0014387177892044556,0.0016313983681044085,0.001824078947004362,0.0020251656574878695,0.0022989309342454096,0.0025678813454359374,0.0027616720944514915,0.002955462843467046,0.0031492535924825997,0.0034756557588013423,0.0038155536176074844,0.004140069955687727,0.00445903666566264,0.004840689742845017,0.0052787101132608085,0.005638266811605669,0.006025584015752924,0.00647017804371482,0.006971150334435193,0.007353821528083093,0.007728475722954575,0.008344917738012665,0.008785197803812568,0.009327742995615175,0.009795482820562406,0.010238885366808755,0.01071708222465262,0.011318173423773972,0.01197312820060974,0.012552394435969531,0.013212950504122335,0.01380208338619687,0.014377458940304226,0.015019710992073748,0.01585161618595715,0.016495783637161983,0.01730389921667224,0.01806841949823104,0.018858161719585452,0.019669449043455897,0.02052510633810318,0.02140771565368083,0.022518976288271618,0.023561260839692243,0.02463765513586147,0.02572573961026561,0.026884897227147587,0.028110423406920056,0.029409354243011325,0.030791117056573628,0.03246465774093566,0.034141454131247015,0.03563865377332034,0.03781198118805504,0.03959573356856844,0.04151150297931338,0.04408564242730295,0.04707353548194253,0.04955193649191704,0.052277481283200464,0.05528407143365244,0.05862679247056829,0.062361834117688156,0.06659203947978296,0.07138537344476242,0.07686095430711447,0.08322613529693752,0.09072083668432541,0.09965021983115127,0.11080401027737792,0.12450348372318673,0.14239559386877285,0.15751158142136085,0.16664312465167552,0.19977419189219023,0.24948719780651665,0.3326528688082691,0.35682551590609696,0.49977462814160356,0.9995673461948011\n    }\n    rtr_points_3 = {\n        5.988891143936782E-6,3.505973704507069E-5,3.4883478142729593E-4,4.4176470167726646E-4,4.976283023298114E-4,6.235180807498897E-4,7.494078591699681E-4,8.752976375900468E-4,0.001001187416010125,0.0011270771944302035,0.0012529669728502818,0.0014387177892044556,0.0016313983681044085,0.001824078947004362,0.0020251656574878695,0.0022989309342454096,0.0025678813454359374,0.0027616720944514915,0.002955462843467046,0.0031492535924825997,0.0034756557588013423,0.0038155536176074844,0.004140069955687727,0.00445903666566264,0.004840689742845017,0.0052787101132608085,0.005638266811605669,0.006025584015752924,0.00647017804371482,0.006971150334435193,0.007353821528083093,0.007728475722954575,0.008344917738012665,0.008785197803812568,0.009327742995615175,0.009795482820562406,0.010238885366808755,0.01071708222465262,0.011318173423773972,0.01197312820060974,0.012552394435969531,0.013212950504122335,0.01380208338619687,0.014377458940304226,0.015019710992073748,0.01585161618595715,0.016495783637161983,0.01730389921667224,0.01806841949823104,0.018858161719585452,0.019669449043455897,0.02052510633810318,0.02140771565368083,0.022518976288271618,0.023561260839692243,0.02463765513586147,0.02572573961026561,0.026884897227147587,0.028110423406920056,0.029409354243011325,0.030791117056573628,0.03246465774093566,0.034141454131247015,0.03563865377332034,0.03781198118805504,0.03959573356856844,0.04151150297931338,0.04408564242730295,0.04707353548194253,0.04955193649191704,0.052277481283200464,0.05528407143365244,0.05862679247056829,0.062361834117688156,0.06659203947978296,0.07138537344476242,0.07686095430711447,0.08322613529693752,0.09072083668432541,0.09965021983115127,0.11080401027737792,0.12450348372318673,0.14239559386877285,0.15751158142136085,0.16664312465167552,0.19977419189219023,0.24948719780651665,0.3326528688082691,0.35682551590609696,0.49977462814160356,0.9995673461948011\n    }\n    -- len(rtr_points_3)=91\n\n\n    fre_grouped_rtr = bisect_left(rtr_points_3, rtr, 1, 92)\n\n    like_cnt_points = {\n        0.5449991128169789,1.016063670811833,8.747140902752705,21.253820425491337,72.90068209920065\n    }\n    like_cnt_points_2 = {\n        2.0606970145807395,3.121121661610441,6.30266328616162,9.48420491071274,12.665746535263919,17.98031770206881,24.380268415406967,33.453422418603644,49.19934522152798,81.89740305672251,156.34769313695185,416.9656003124001\n    }\n    like_cnt_points_3 = {\n        1,2,3,6,8,9,12,17,21,24,33,49,72,81,156,416\n    }\n    -- len(like_cnt_points_3) = 16\n\n    fre_grouped_like_cnt = bisect_left(like_cnt_points_3, like_cnt, 1, 17)\n\n    reply_cnt_points = {\n        0.04650452281106904,0.09850167006792934,0.15049881732478965,0.20249596458164998,0.25449311183851026,0.3064902590953706,0.3584874063522309,0.4104845536090912,0.46248170086595153,0.5144788481228119,0.5664759953796722,0.6184731426365324,0.6704702898933927,0.7224674371502531,0.7744645844071134,0.8264617316639737,0.878458878920834,0.9304560261776943,0.9824531734345546,1.175136487858314,1.439476487209538,1.703816486560762,1.9681564859119858,2.480164524616552,3.0456847832916156,4.002255273128647,5.641498034553881,8.744862211810139,17.627993621061677\n    }\n    reply_cnt_points_2 = {\n        1.0,1.0527395651044542,1.131762334140628,1.2107851031768027,1.289807872212977,1.3688306412491502,1.4478534102853249,1.5268761793214989,1.6058989483576736,1.684921717393848,1.763944486430022,1.8429672554661964,1.921990024502371,2.0020916769017805,2.1652938443890952,2.32849601187641,2.4916981793637234,2.654900346851038,2.81810251433835,2.9813046818256645,3.2529990678922216,3.53872944294769,3.8244598180031533,4.167364104080751,4.601350168560889,5.0499311974486005,5.6631670183224525,6.366900247673929,7.232990337403987,8.345738921346383,9.782962766252597,11.784729680848082,14.759783106623669,19.606508205137196,28.952565216661803,55.82670348302114\n    }\n    reply_cnt_points_3 = {\n        1,2,3,4,5,6,7,8,9,11,14,17,19,28,55\n    }\n    -- len(reply_cnt_points_3) = 15\n\n    fre_grouped_reply_cnt = bisect_left(reply_cnt_points_3, reply_cnt, 1, 16)\n\n\n    return fre_grouped_ltr, fre_grouped_rtr, fre_grouped_like_cnt, fre_grouped_reply_cnt\nend",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_68F3B0": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "expandaction",
+              "likeaction",
+              "replyaction"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "expandaction_v",
+              "likeaction_v",
+              "replyaction_v"
+            ]
+          },
+          "export_item_attr": [
+            "expandaction_v",
+            "likeaction_v",
+            "replyaction_v"
+          ],
+          "function_for_item": "trans",
+          "import_item_attr": [
+            "expandaction",
+            "likeaction",
+            "replyaction"
+          ],
+          "lua_script": "function trans() \n            return expandaction * 1.0, likeaction * 1.0, replyaction * 1.0\n          end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_6DD8C9": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "gender",
+              "photo_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "photo_hash"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "photo_hash"
+          ],
+          "function_for_common": "get_photo_hash",
+          "import_common_attr": [
+            "photo_id",
+            "age_segment",
+            "gender"
+          ],
+          "lua_script": "function get_photo_hash()\n            local photo_hash_str = tostring(photo_id) .. tostring(age_segment) .. tostring(gender)\n            return util.CityHash64(photo_hash_str)\n          end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_AF7E6F": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "device_id",
+              "user_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "user_hash"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "user_hash"
+          ],
+          "function_for_common": "get_hash",
+          "import_common_attr": [
+            "user_id",
+            "device_id"
+          ],
+          "lua_script": "function get_hash()\n          if device_id == nil or device_id == \"\" then\n            return tonumber(user_id or '0')\n          end\n          return util.CityHash64(device_id)\n        end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "extract_kuiba_parameter_2CADE3": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "author_id",
+              "comment_genre",
+              "comment_id",
+              "dislike_cnt",
+              "like_cnt",
+              "ltr",
+              "ltr_copy",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "reply_cnt",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "rtr",
+              "rtr_copy"
+            ],
+            "$input_item_attrs": [
+              "author_id",
+              "comment_content_segs",
+              "comment_genre",
+              "comment_id",
+              "dislike_cnt",
+              "like_cnt",
+              "ltr",
+              "ltr_copy",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "reply_cnt",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "rtr",
+              "rtr_copy",
+              "showaction"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "comment_item_signs",
+              "comment_item_slots"
+            ]
+          },
+          "config": {
+            "author_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "author_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 202,
+                  "mio_slot_key_type": 202
+                }
+              ]
+            },
+            "comment_content_segs": {
+              "attrs": [
+                {
+                  "attr": [
+                    "comment_content_segs"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 16,
+                    "reversed": false
+                  },
+                  "key_type": 212,
+                  "mio_slot_key_type": 212,
+                  "type": 5
+                }
+              ]
+            },
+            "comment_genre": {
+              "attrs": [
+                {
+                  "attr": [
+                    "comment_genre"
+                  ],
+                  "converter": "id",
+                  "key_type": 213,
+                  "mio_slot_key_type": 213
+                }
+              ]
+            },
+            "comment_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "comment_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 201,
+                  "mio_slot_key_type": 201
+                }
+              ]
+            },
+            "dislike_cnt": {
+              "attrs": [
+                {
+                  "attr": [
+                    "dislike_cnt"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "3,0,100000,1,0",
+                  "key_type": 209,
+                  "mio_slot_key_type": 209
+                }
+              ]
+            },
+            "like_cnt": {
+              "attrs": [
+                {
+                  "attr": [
+                    "like_cnt"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "5,0,100000,1,0",
+                  "key_type": 203,
+                  "mio_slot_key_type": 203
+                }
+              ]
+            },
+            "ltr": {
+              "attrs": [
+                {
+                  "attr": [
+                    "ltr"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "0.001,0,1000,1,0",
+                  "key_type": 206,
+                  "mio_slot_key_type": 206
+                }
+              ]
+            },
+            "ltr_copy": {
+              "attrs": [
+                {
+                  "attr": [
+                    "ltr_copy"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "0.001,0,1000,137,0",
+                  "key_type": 210,
+                  "mio_slot_key_type": 210
+                }
+              ]
+            },
+            "minute_diff": {
+              "attrs": [
+                {
+                  "attr": [
+                    "minute_diff"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "36,0,336,1,0",
+                  "key_type": 205,
+                  "mio_slot_key_type": 205
+                }
+              ]
+            },
+            "mmu_category_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "mmu_category_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 217,
+                  "mio_slot_key_type": 217
+                }
+              ]
+            },
+            "mmu_emotion_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "mmu_emotion_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 218,
+                  "mio_slot_key_type": 218
+                }
+              ]
+            },
+            "mmu_entity_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "mmu_entity_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 10,
+                    "reversed": false
+                  },
+                  "key_type": 219,
+                  "mio_slot_key_type": 219,
+                  "type": 5
+                }
+              ]
+            },
+            "reply_cnt": {
+              "attrs": [
+                {
+                  "attr": [
+                    "reply_cnt"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "5,0,100000,1,0",
+                  "key_type": 204,
+                  "mio_slot_key_type": 204
+                }
+              ]
+            },
+            "risk_inactive_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_inactive_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 216,
+                  "mio_slot_key_type": 216
+                }
+              ]
+            },
+            "risk_insult_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_insult_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 214,
+                  "mio_slot_key_type": 214
+                }
+              ]
+            },
+            "risk_negative_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_negative_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 215,
+                  "mio_slot_key_type": 215
+                }
+              ]
+            },
+            "rtr": {
+              "attrs": [
+                {
+                  "attr": [
+                    "rtr"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "0.001,0,1000,1,0",
+                  "key_type": 207,
+                  "mio_slot_key_type": 207
+                }
+              ]
+            },
+            "rtr_copy": {
+              "attrs": [
+                {
+                  "attr": [
+                    "rtr_copy"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "0.001,0,1000,137,0",
+                  "key_type": 211,
+                  "mio_slot_key_type": 211
+                }
+              ]
+            },
+            "showaction": {
+              "attrs": [
+                {
+                  "attr": [
+                    "showaction"
+                  ],
+                  "converter": "id",
+                  "key_type": 208,
+                  "mio_slot_key_type": 208
+                }
+              ]
+            }
+          },
+          "is_common_attr": false,
+          "parameters_output": "comment_item_signs",
+          "slots_output": "comment_item_slots",
+          "type_name": "KuibaParameterAttrEnricher"
+        },
+        "extract_kuiba_parameter_67B29A": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "device_id",
+              "gender",
+              "photo_author_id",
+              "photo_id",
+              "user_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "comment_common_signs",
+              "comment_common_slots"
+            ],
+            "$output_item_attrs": []
+          },
+          "config": {
+            "age_segment": {
+              "attrs": [
+                {
+                  "attr": [
+                    "age_segment"
+                  ],
+                  "converter": "id",
+                  "key_type": 102,
+                  "mio_slot_key_type": 102
+                }
+              ]
+            },
+            "device_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "device_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 106,
+                  "mio_slot_key_type": 106
+                }
+              ]
+            },
+            "gender": {
+              "attrs": [
+                {
+                  "attr": [
+                    "gender"
+                  ],
+                  "converter": "id",
+                  "key_type": 101,
+                  "mio_slot_key_type": 101
+                }
+              ]
+            },
+            "photo_author_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "photo_author_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 202,
+                  "mio_slot_key_type": 104
+                }
+              ]
+            },
+            "photo_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "photo_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 103,
+                  "mio_slot_key_type": 103
+                }
+              ]
+            },
+            "user_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "user_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 202,
+                  "mio_slot_key_type": 105
+                }
+              ]
+            }
+          },
+          "is_common_attr": true,
+          "parameters_output": "comment_common_signs",
+          "slots_output": "comment_common_slots",
+          "type_name": "KuibaParameterAttrEnricher"
+        },
+        "fetch_message_63A947": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "csv_sample_data"
+            ],
+            "$output_item_attrs": []
+          },
+          "group_id": "reco_forward_open_log",
+          "hdfs_format": "raw_text",
+          "hdfs_path": "viewfs:///home/ds/dw/ks_data_science.db/reco_comment_zone_model_sample_data_train_test/data_type=0327_12_13Test",
+          "output_attr": "csv_sample_data",
+          "type_name": "OfflineMessageFetchEnricher"
+        },
+        "log_debug_info_0579D6": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "csv_sample_data"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "common_attrs": [
+            "csv_sample_data"
+          ],
+          "for_debug_request_only": false,
+          "respect_sample_logging": true,
+          "type_name": "CommonRecoDebugInfoObserver"
+        },
+        "perflog_attr_value_17379E": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "photo_hash",
+              "user_hash"
+            ],
+            "$input_item_attrs": [
+              "fre_grouped_like_cnt",
+              "fre_grouped_ltr",
+              "fre_grouped_reply_cnt",
+              "fre_grouped_rtr"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "send.mio.before",
+          "common_attrs": [
+            "user_hash",
+            "photo_hash"
+          ],
+          "item_attrs": [
+            "fre_grouped_ltr",
+            "fre_grouped_rtr",
+            "fre_grouped_like_cnt",
+            "fre_grouped_reply_cnt"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "perflog_attr_value_7A479F": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "gender"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "comment.fea",
+          "common_attrs": [
+            "gender",
+            "age_segment"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "perflog_attr_value_CF22CB": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "send_sample_cnt"
+            ],
+            "$input_item_attrs": [
+              "expandaction",
+              "expandaction_v",
+              "likeaction",
+              "likeaction_v",
+              "replyaction",
+              "replyaction_v",
+              "sample_weight"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "comment.mio.record",
+          "common_attrs": [
+            "send_sample_cnt"
+          ],
+          "item_attrs": [
+            "sample_weight",
+            "expandaction_v",
+            "likeaction_v",
+            "replyaction_v",
+            "expandaction",
+            "likeaction",
+            "replyaction"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "retrieve_from_tf_sequence_example_22B8B0": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "tf_sequence_example"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "from_extra_var": "tf_sequence_example",
+          "item_key_attr": "comment_id",
+          "reason": 111,
+          "type_name": "OfflineTensorflowSequenceExampleRetriever"
+        },
+        "return__28C561": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "_if_control_attr_1"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "skip": "{{_if_control_attr_1}}",
+          "status_code": 0,
+          "type_name": "CommonRecoExecutionStatusEnricher"
+        },
+        "send_to_mio_learner_EB3A4B": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "comment_common_signs",
+              "comment_common_slots",
+              "comment_item_signs",
+              "comment_item_slots",
+              "expandaction",
+              "expandaction_v",
+              "likeaction",
+              "likeaction_v",
+              "photo_hash",
+              "replyaction",
+              "replyaction_v",
+              "sample_weight",
+              "time_ms",
+              "user_id"
+            ],
+            "$input_item_attrs": [
+              "comment_common_signs",
+              "comment_common_slots",
+              "comment_item_signs",
+              "comment_item_slots",
+              "expandaction",
+              "expandaction_v",
+              "likeaction",
+              "likeaction_v",
+              "photo_hash",
+              "replyaction",
+              "replyaction_v",
+              "sample_weight"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "attrs": [
+            "sample_weight",
+            "expandaction_v",
+            "likeaction_v",
+            "replyaction_v",
+            "expandaction",
+            "likeaction",
+            "replyaction",
+            "photo_hash"
+          ],
+          "label_attr": "likeaction_v",
+          "lineid_attr": "user_id",
+          "signs_attrs": [
+            "comment_common_signs",
+            "comment_item_signs"
+          ],
+          "slots_attrs": [
+            "comment_common_slots",
+            "comment_item_slots"
+          ],
+          "time_ms_attr": "time_ms",
+          "type_name": "MioRecordChannelObserver",
+          "user_hash_attr": "photo_hash"
+        },
+        "set_attr_default_value_7EDEA9": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "audienceaction",
+              "expandaction",
+              "likeaction",
+              "replyaction",
+              "reportaction",
+              "showaction"
+            ]
+          },
+          "item_attrs": [
+            {
+              "name": "expandaction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "replyaction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "likeaction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "audienceaction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "reportaction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "showaction",
+              "type": "int",
+              "value": 0
+            }
+          ],
+          "type_name": "CommonRecoAttrDefaultValueEnricher"
+        },
+        "split_string_3BFF9F": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "comment_content_segs_v"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "comment_content_segs"
+            ]
+          },
+          "delimiters": "_",
+          "input_item_attr": "comment_content_segs_v",
+          "output_item_attr": "comment_content_segs",
+          "type_name": "CommonRecoStringSplitEnricher"
+        },
+        "split_string_818C98": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "mmu_entity_list_v"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "mmu_entity_list"
+            ]
+          },
+          "delimiters": "_",
+          "input_item_attr": "mmu_entity_list_v",
+          "output_item_attr": "mmu_entity_list",
+          "type_name": "CommonRecoStringSplitEnricher"
+        }
+      },
+      "type_name": "CommonRecoPipeline"
+    },
+    "pipeline_map": {
+      "extract_fea": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "split_string_3BFF9F",
+          "split_string_818C98",
+          "perflog_attr_value_7A479F",
+          "enrich_attr_by_lua_4317FB",
+          "extract_kuiba_parameter_67B29A",
+          "extract_kuiba_parameter_2CADE3"
+        ]
+      },
+      "read_data": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "fetch_message_63A947",
+          "log_debug_info_0579D6",
+          "convert_csv_to_tf_sequence_example_429A17",
+          "retrieve_from_tf_sequence_example_22B8B0",
+          "count_reco_result_667B8B",
+          "_branch_controller_A93BFE5B",
+          "return__28C561",
+          "set_attr_default_value_7EDEA9",
+          "enrich_attr_by_lua_17B265"
+        ]
+      },
+      "send_mio": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "count_reco_result_7BD7E7",
+          "enrich_attr_by_lua_68F3B0",
+          "perflog_attr_value_CF22CB",
+          "enrich_attr_by_lua_AF7E6F",
+          "enrich_attr_by_lua_6DD8C9",
+          "perflog_attr_value_17379E",
+          "send_to_mio_learner_EB3A4B"
+        ]
+      }
+    }
+  },
+  "runner_pipeline_group": {
+    "default_name": {
+      "core_num_thread_ratio": 0.0,
+      "pipeline": [
+        "read_data",
+        "extract_fea",
+        "send_mio"
+      ],
+      "thread_num": -1
+    }
+  },
+  "service_identifier": "comment_profile"
+}

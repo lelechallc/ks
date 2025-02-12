@@ -1,0 +1,2028 @@
+embedding:
+  slots_config:
+  - common: false
+    dim: 4
+    dtype: float32
+    input_name: user_embedding
+    slots: 101 102
+    update_type: gradient
+  - common: false
+    dim: 64
+    dtype: float32
+    input_name: pid_embedding
+    slots: '103'
+    update_type: gradient
+  - common: false
+    dim: 64
+    dtype: float32
+    input_name: aid_embedding
+    slots: '104'
+    update_type: gradient
+  - common: false
+    dim: 64
+    dtype: float32
+    input_name: uid_embedding
+    slots: '105'
+    update_type: gradient
+  - common: false
+    dim: 64
+    dtype: float32
+    input_name: did_embedding
+    slots: '106'
+    update_type: gradient
+  - common: false
+    dim: 32
+    dtype: float32
+    input_name: context_embedding
+    slots: 110 111
+    update_type: gradient
+  - common: false
+    dim: 64
+    dtype: float32
+    input_name: c_id_embedding
+    slots: 201 202
+    update_type: gradient
+  - common: false
+    dim: 32
+    dtype: float32
+    input_name: c_info_embedding
+    slots: 203 204 205 206 207 209
+    update_type: gradient
+  - common: false
+    dim: 8
+    dtype: float32
+    input_name: position_embedding
+    slots: '208'
+    update_type: gradient
+  - common: false
+    dim: 8
+    dtype: float32
+    input_name: comment_genre_embedding
+    slots: '250'
+    update_type: gradient
+  - common: false
+    dim: 32
+    dtype: float32
+    input_name: comment_length_embedding
+    slots: '251'
+    update_type: gradient
+graph: /kai/share/jobs/20241125/151716_9434760/worker/ranks/0/run_dir/graph_def.pb
+graph_output_labels:
+- Select:0
+- Select_1:0
+- Select_2:0
+- Select_3:0
+- Select_4:0
+- Select_5:0
+- Select_6:0
+- clip_by_value:0
+graph_q_valid:
+  audience_predict: ones_like:0
+  continuous_expand_predict: ones_like:0
+  copy_predict: ones_like:0
+  duration_predict: ones_like:0
+  expand_predict: ones_like:0
+  like_predict: ones_like:0
+  reply_predict: ones_like:0
+  share_predict: ones_like:0
+graph_tensor_mapping:
+  audience_predict: audience_xtr/dense_3/Sigmoid:0
+  continuous_expand_predict: continuous_expand_xtr/dense_3/Sigmoid:0
+  copy_predict: copy_xtr/dense_3/Sigmoid:0
+  duration_predict: add:0
+  expand_predict: expand_xtr/dense_3/Sigmoid:0
+  like_predict: like_xtr/dense_3/Sigmoid:0
+  reply_predict: reply_xtr/dense_3/Sigmoid:0
+  share_predict: share_xtr/dense_3/Sigmoid:0
+param:
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/embeddings/word_embeddings
+  opt_type: Adam
+  rown: 21128
+  scale_by_rown: true
+  shape:
+  - 21128
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/embeddings/token_type_embeddings
+  opt_type: Adam
+  rown: 2
+  scale_by_rown: true
+  shape:
+  - 2
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/embeddings/position_embeddings
+  opt_type: Adam
+  rown: 512
+  scale_by_rown: true
+  shape:
+  - 512
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/embeddings/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/embeddings/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/self/query/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/self/query/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/self/key/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/self/key/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/self/value/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/self/value/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/output/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/attention/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1024
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/intermediate/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 1024
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/intermediate/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/output/dense/kernel
+  opt_type: Adam
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_0/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/self/query/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/self/query/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/self/key/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/self/key/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/self/value/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/self/value/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/output/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/attention/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1024
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/intermediate/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 1024
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/intermediate/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/output/dense/kernel
+  opt_type: Adam
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_1/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/self/query/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/self/query/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/self/key/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/self/key/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/self/value/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/self/value/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/output/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/attention/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1024
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/intermediate/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 1024
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/intermediate/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/output/dense/kernel
+  opt_type: Adam
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_2/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/self/query/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/self/query/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/self/key/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/self/key/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/self/value/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/self/value/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/output/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/attention/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1024
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/intermediate/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 1024
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/intermediate/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/output/dense/kernel
+  opt_type: Adam
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_3/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/self/query/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/self/query/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/self/key/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/self/key/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/self/value/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/self/value/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/output/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/attention/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1024
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/intermediate/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 1024
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/intermediate/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/output/dense/kernel
+  opt_type: Adam
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_4/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/self/query/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/self/query/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/self/key/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/self/key/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/self/value/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/self/value/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/output/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/attention/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1024
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/intermediate/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 1024
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/intermediate/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/output/dense/kernel
+  opt_type: Adam
+  rown: 1024
+  scale_by_rown: true
+  shape:
+  - 1024
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/output/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/output/LayerNorm/beta
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/encoder/layer_5/output/LayerNorm/gamma
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: bert/pooler/dense/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: bert/pooler/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: expand_xtr/dense/kernel
+  opt_type: Adam
+  rown: 944
+  scale_by_rown: true
+  shape:
+  - 944
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: expand_xtr/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: expand_xtr/dense_1/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: expand_xtr/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: expand_xtr/dense_2/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: expand_xtr/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: expand_xtr/dense_3/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: expand_xtr/dense_3/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: like_xtr/dense/kernel
+  opt_type: Adam
+  rown: 944
+  scale_by_rown: true
+  shape:
+  - 944
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: like_xtr/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: like_xtr/dense_1/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: like_xtr/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: like_xtr/dense_2/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: like_xtr/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: like_xtr/dense_3/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: like_xtr/dense_3/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: reply_xtr/dense/kernel
+  opt_type: Adam
+  rown: 944
+  scale_by_rown: true
+  shape:
+  - 944
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: reply_xtr/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: reply_xtr/dense_1/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: reply_xtr/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: reply_xtr/dense_2/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: reply_xtr/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: reply_xtr/dense_3/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: reply_xtr/dense_3/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: copy_xtr/dense/kernel
+  opt_type: Adam
+  rown: 944
+  scale_by_rown: true
+  shape:
+  - 944
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: copy_xtr/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: copy_xtr/dense_1/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: copy_xtr/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: copy_xtr/dense_2/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: copy_xtr/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: copy_xtr/dense_3/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: copy_xtr/dense_3/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: share_xtr/dense/kernel
+  opt_type: Adam
+  rown: 944
+  scale_by_rown: true
+  shape:
+  - 944
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: share_xtr/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: share_xtr/dense_1/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: share_xtr/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: share_xtr/dense_2/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: share_xtr/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: share_xtr/dense_3/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: share_xtr/dense_3/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: audience_xtr/dense/kernel
+  opt_type: Adam
+  rown: 944
+  scale_by_rown: true
+  shape:
+  - 944
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: audience_xtr/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: audience_xtr/dense_1/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: audience_xtr/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: audience_xtr/dense_2/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: audience_xtr/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: audience_xtr/dense_3/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: audience_xtr/dense_3/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: continuous_expand_xtr/dense/kernel
+  opt_type: Adam
+  rown: 944
+  scale_by_rown: true
+  shape:
+  - 944
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: continuous_expand_xtr/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: continuous_expand_xtr/dense_1/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: continuous_expand_xtr/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: continuous_expand_xtr/dense_2/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: continuous_expand_xtr/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: continuous_expand_xtr/dense_3/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: continuous_expand_xtr/dense_3/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+- coln: 256
+  init_mean: 0
+  init_range: 1
+  name: duration_predict/dense/kernel
+  opt_type: Adam
+  rown: 944
+  scale_by_rown: true
+  shape:
+  - 944
+  - 256
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_predict/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: duration_predict/dense_1/kernel
+  opt_type: Adam
+  rown: 256
+  scale_by_rown: true
+  shape:
+  - 256
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_predict/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: duration_predict/dense_2/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_predict/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_predict/dense_3/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_predict/dense_3/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+- coln: 128
+  init_mean: 0
+  init_range: 1
+  name: duration_pos_bias_predict/dense/kernel
+  opt_type: Adam
+  rown: 136
+  scale_by_rown: true
+  shape:
+  - 136
+  - 128
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_pos_bias_predict/dense/bias
+  opt_type: Adam
+  rank: 1
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  update_type: gradient
+- coln: 64
+  init_mean: 0
+  init_range: 1
+  name: duration_pos_bias_predict/dense_1/kernel
+  opt_type: Adam
+  rown: 128
+  scale_by_rown: true
+  shape:
+  - 128
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_pos_bias_predict/dense_1/bias
+  opt_type: Adam
+  rank: 1
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_pos_bias_predict/dense_2/kernel
+  opt_type: Adam
+  rown: 64
+  scale_by_rown: true
+  shape:
+  - 64
+  - 1
+  update_type: gradient
+- coln: 1
+  init_mean: 0
+  init_range: 1
+  name: duration_pos_bias_predict/dense_2/bias
+  opt_type: Adam
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+  shape:
+  - 1
+  update_type: gradient
+q_label:
+- auc_set: auc
+  label: Select:0
+  name: expand_predict
+- auc_set: auc
+  label: Select_2:0
+  name: like_predict
+- auc_set: auc
+  label: Select_3:0
+  name: reply_predict
+- auc_set: auc
+  label: Select_4:0
+  name: copy_predict
+- auc_set: auc
+  label: Select_5:0
+  name: share_predict
+- auc_set: auc
+  label: Select_6:0
+  name: audience_predict
+- auc_set: auc
+  label: Select_1:0
+  name: continuous_expand_predict
+- auc_set: linear_regression
+  label: clip_by_value:0
+  name: duration_predict
+q_names: expand_predict like_predict reply_predict copy_predict share_predict audience_predict
+  continuous_expand_predict duration_predict
+vec_input: []

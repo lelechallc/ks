@@ -1,0 +1,58 @@
+{
+  "db_list": {
+    "U2I": {
+      "edge_max_num": 1000,
+      "oversize_replace_strategy": 0,
+      "expire_interval": 2592000,
+      "elst": "cpt",
+      "edge_expire_interval_s": 2592000,
+      "weight_decay_ratio": 1,
+      "decay_interval_s": 86400,
+      "delete_threshold_weight": 0,
+      "edge_attr_op_config": {
+        "type_name": "SimpleAttrBlock",
+        "int_max_size": 1,
+        "float_max_size": 0
+      },
+      "relation_name": "U2I",
+      "kv_dict_size": 1875000,
+      "kv_size": 6710886400,
+      "kv_shard_num": 64
+    }
+  },
+  "service_config": {
+    "default_rpc_thread_num": 64,
+    "grpc_kgnn_pid_history_cmt_info-U2I-0": {
+      "shard_num": 2,
+      "dbs": [
+        "U2I"
+      ],
+      "checkpoint": {
+        "checkpoint_path": "/home/reco/kgnn/pid_history_cmt_info",
+        "reserve_days": 1,
+        "save_interval_s": 21600
+      },
+      "service_name": "grpc_kgnn_pid_history_cmt_info-U2I",
+      "exp_name": "pid_history_cmt_info",
+      "shard_id": 0
+    },
+    "grpc_kgnn_pid_history_cmt_info-U2I-1": {
+      "shard_num": 2,
+      "dbs": [
+        "U2I"
+      ],
+      "checkpoint": {
+        "checkpoint_path": "/home/reco/kgnn/pid_history_cmt_info",
+        "reserve_days": 1,
+        "save_interval_s": 21600
+      },
+      "service_name": "grpc_kgnn_pid_history_cmt_info-U2I",
+      "exp_name": "pid_history_cmt_info",
+      "shard_id": 1
+    }
+  },
+  "global_shard_config": {
+    "0": "grpc_kgnn_pid_history_cmt_info-U2I-0",
+    "1": "grpc_kgnn_pid_history_cmt_info-U2I-1"
+  }
+}

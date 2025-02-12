@@ -1,0 +1,39 @@
+# 生成时base.yaml文件只是作为一个模板。实际上会按照model.py里定义的特征slot信息生成真实的dnn_model.yaml。
+# ref: https://docs.corp.kuaishou.com/k/home/VOJkK3shHgu8/fcACklQ3zt9FnrT5mGPG0z3Do
+ada_decay_rate: 0.99999
+ada_epsilon: 1e-8
+avg_decay_rate: 0.999993
+back_propagate_input: true
+embedding:
+  create_threshold: 0
+  initial_g2sum: 3
+  initial_range: 2
+  learning_rate: 0.05
+  version_aware: true
+  weight_bounds:
+  - -10
+  - 10
+extra_params: []
+global_init_range: 0.2
+graph: ./conf/graph.pb
+graph_targets:
+- opt
+hyperparameter_kconf: null
+learning_rate: 5.0e-06
+mom_decay_rate: 0.999
+output_hidden_units: update_input continue_normlized_input slide_embedding slide_wide
+  watch_time_wide position_weight_input
+summary:
+- len: 1912
+  name: base_summary
+- len: 2072
+  name: stub_summary
+summary_decay_rate: 0.999999
+summary_init_n: 1e4
+summary_init_squared_sum: 1e4
+summary_squared_sum_epsilon: 1e-4
+test_layers_at_joining: join join_forward update update_forward
+test_layers_at_updating: update update_forward
+test_mode: false
+train_layers_at_joining: join
+train_layers_at_updating: update

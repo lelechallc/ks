@@ -1,0 +1,11 @@
+io_config:
+  train:
+    batch_size: 8192
+    train_pass_size: 8192
+    begin_time_ms: 1631448000000
+    end_time_ms: 1631451600000
+    pipeline_config_path: cofea_reader.json
+    reader_configs: RecordConfig 
+distributed_strategy:
+  sparse_table_config.max_key_nums: 400000
+distributed_strategy_trigger: KaiSyncDistributedStrategy

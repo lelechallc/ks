@@ -1,0 +1,1114 @@
+{
+  "_CONFIG_VERSION": "8eeb8ddb286ed4cf7c1478d9294bb7a0_local",
+  "_DRAGONFLY_CREATE_TIME": "2024-05-21 12:00:23",
+  "_DRAGONFLY_VERSION": "0.8.0",
+  "kess_config": {},
+  "pipeline_manager_config": {
+    "base_pipeline": {
+      "processor": {
+        "_branch_controller_16FB84C2": {
+          "$branch_start": "_branch_controller_16FB84C2",
+          "$code_info": "[if] 16FB84C2 temporal_seq_comment_show.py in fetch_data(): .if_(\"common_recall_type > 0\")",
+          "$metadata": {
+            "$input_common_attrs": [
+              "common_recall_type"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "_if_control_attr_2"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "_if_control_attr_2"
+          ],
+          "for_branch_control": true,
+          "function_for_common": "evaluate",
+          "import_common_attr": [
+            "common_recall_type"
+          ],
+          "lua_script": "function evaluate() if (common_recall_type > 0) then return false else return true end end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "_branch_controller_2253ED6E": {
+          "$branch_start": "_branch_controller_2253ED6E",
+          "$code_info": "[if] 2253ED6E temporal_seq_comment_show.py in fetch_data(): .if_(\"is_second_comment == 1\")",
+          "$metadata": {
+            "$input_common_attrs": [
+              "is_second_comment"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "_if_control_attr_1"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "_if_control_attr_1"
+          ],
+          "for_branch_control": true,
+          "function_for_common": "evaluate",
+          "import_common_attr": [
+            "is_second_comment"
+          ],
+          "lua_script": "function evaluate() if (is_second_comment == 1) then return false else return true end end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "_branch_controller_F3BDCC62": {
+          "$branch_start": "_branch_controller_F3BDCC62",
+          "$code_info": "[if] F3BDCC62 temporal_seq_comment_show.py in send_data(): .if_(\"current_cnt <= 0\")",
+          "$metadata": {
+            "$input_common_attrs": [
+              "current_cnt"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "_if_control_attr_3"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "_if_control_attr_3"
+          ],
+          "for_branch_control": true,
+          "function_for_common": "evaluate",
+          "import_common_attr": [
+            "current_cnt"
+          ],
+          "lua_script": "function evaluate() if (current_cnt <= 0) then return false else return true end end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "content_filter": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "clean_content",
+              "comment_content"
+            ],
+            "$modify_item_tables": [
+              ""
+            ],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "rule": {
+            "filters": [
+              {
+                "attr_name": "comment_content",
+                "compare_to": "",
+                "remove_if": "!="
+              },
+              {
+                "attr_name": "clean_content",
+                "compare_to": "",
+                "remove_if": "=="
+              }
+            ],
+            "join": "and"
+          },
+          "type_name": "CommonRecoRuleFilterArranger"
+        },
+        "copy_attr_176825": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "comment_user_id",
+              "common_comment_index",
+              "common_recall_type"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "author_id",
+              "comment_index",
+              "recall_type"
+            ]
+          },
+          "attrs": [
+            {
+              "from_common": "comment_user_id",
+              "overwrite": true,
+              "to_item": "author_id"
+            },
+            {
+              "from_common": "common_recall_type",
+              "overwrite": true,
+              "to_item": "recall_type"
+            },
+            {
+              "from_common": "common_comment_index",
+              "overwrite": true,
+              "to_item": "comment_index"
+            }
+          ],
+          "type_name": "CommonRecoCopyAttrEnricher"
+        },
+        "copy_item_meta_info_A7F5B2": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "comment_id"
+            ]
+          },
+          "save_item_id_to_attr": "comment_id",
+          "type_name": "CommonRecoItemMetaInfoEnricher"
+        },
+        "count_reco_result_42DA41": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "random_filter_cnt"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "random_filter_cnt",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "count_reco_result_579D4D": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "risk_filter_cnt"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "risk_filter_cnt",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "count_reco_result_6097D5": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "current_cnt"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "current_cnt",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "count_reco_result_AD635A": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "content_filter_cnt"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "content_filter_cnt",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "enrich_attr_by_lua_1E6002": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "client_timestamp",
+              "server_timestamp"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "client_minute_diff",
+              "server_minute_diff"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "client_minute_diff",
+            "server_minute_diff"
+          ],
+          "function_for_common": "calc_minute_diff",
+          "import_common_attr": [
+            "client_timestamp",
+            "server_timestamp"
+          ],
+          "lua_script": "function calc_minute_diff()\n                    local cur_ms = util.GetTimestamp() / 1000\n                    local client_minute_diff = (cur_ms - client_timestamp) / (60 * 1000.0)\n                    local server_minute_diff = (cur_ms - server_timestamp) / (60 * 1000.0)\n                    return client_minute_diff, server_minute_diff\n                end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_5FC91F": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "timestamp"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "minute_diff"
+            ]
+          },
+          "export_item_attr": [
+            "minute_diff"
+          ],
+          "function_for_item": "calc_minute_diff",
+          "import_item_attr": [
+            "timestamp"
+          ],
+          "lua_script": "function calc_minute_diff()\n                    local cur_ts = util.GetTimestamp() / 1000\n                    local minute_diff = (cur_ts - timestamp) / (60 * 1000.0)\n                    return math.min(minute_diff, 7 * 24 * 60.0)\n                end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_E19BDC": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "comment_content"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "clean_content"
+            ]
+          },
+          "export_item_attr": [
+            "clean_content"
+          ],
+          "function_for_item": "clean",
+          "import_item_attr": [
+            "comment_content"
+          ],
+          "lua_script": "function clean()\n\n                    local remove_emoji, gsub_n = string.gsub(comment_content or \"\", \"%b[]\", \"\")\n                    local remove_at, gsub_n = string.gsub(remove_emoji or \"\", \"@.*%(O%d*%)\", \"\")\n\n                    return remove_at\n                end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_with_protobuf_C1D332": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "show_comment"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "client_timestamp",
+              "comment_user_id",
+              "common_comment_id",
+              "common_comment_index",
+              "common_recall_type",
+              "device_id",
+              "is_second_comment",
+              "llsid",
+              "photo_author_id",
+              "photo_id",
+              "server_timestamp",
+              "user_id"
+            ],
+            "$output_item_attrs": []
+          },
+          "attrs": [
+            "user_id",
+            "device_id",
+            "photo_id",
+            "llsid",
+            {
+              "name": "photo_author_id",
+              "path": "author_id"
+            },
+            {
+              "name": "common_comment_id",
+              "path": "comment_id"
+            },
+            "comment_user_id",
+            "is_second_comment",
+            {
+              "name": "common_comment_index",
+              "path": "comment_index"
+            },
+            {
+              "name": "common_recall_type",
+              "path": "recall_type"
+            },
+            "server_timestamp",
+            "client_timestamp"
+          ],
+          "from_extra_var": "show_comment",
+          "type_name": "CommonRecoProtobufAttrEnricher"
+        },
+        "fetch_message_6C725C": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "show_comment_str"
+            ],
+            "$output_item_attrs": []
+          },
+          "group_id": "reco_temporal_comment_show",
+          "kafka_topic": "kscdm_dwd_ks_csm_show_cmt_photo_rt",
+          "output_attr": "show_comment_str",
+          "type_name": "OfflineMessageFetchEnricher"
+        },
+        "gen_random_item_attr_78CA86": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "sample_random"
+            ]
+          },
+          "attr_name": "sample_random",
+          "attr_type": "double",
+          "type_name": "CommonRecoRandomItemAttrEnricher"
+        },
+        "get_item_attr_by_distributed_common_index_6DA9D8": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "comment_content",
+              "comment_content_segs",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "predict_like_score",
+              "predict_reply_score",
+              "quality_score",
+              "quality_v2_score",
+              "realshow_cnt",
+              "related_score",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "timestamp"
+            ]
+          },
+          "attrs": [
+            {
+              "as": "timestamp",
+              "name": "commentTimestampKV"
+            },
+            {
+              "as": "realshow_cnt",
+              "name": "commentRealshowCounterV2"
+            },
+            {
+              "as": "comment_content",
+              "name": "commentContentKV"
+            },
+            {
+              "as": "comment_content_segs",
+              "name": "commentContentSplitList"
+            },
+            {
+              "as": "risk_insult_tag",
+              "name": "commentPunishTagRumaKV"
+            },
+            {
+              "as": "risk_negative_tag",
+              "name": "commentPunishTagNegativeKV"
+            },
+            {
+              "as": "risk_inactive_tag",
+              "name": "commentPunishTagFanNegativeKV"
+            },
+            {
+              "as": "mmu_category_tag",
+              "name": "commentCategoryTagKV"
+            },
+            {
+              "as": "mmu_emotion_tag",
+              "name": "commentEmotionTagKV"
+            },
+            {
+              "as": "mmu_entity_list",
+              "name": "commentEntityTagList"
+            },
+            {
+              "as": "quality_score",
+              "name": "commentQualityScoreKV",
+              "type": "float"
+            },
+            {
+              "as": "related_score",
+              "name": "commentRelatedScoreKV",
+              "type": "float"
+            },
+            {
+              "as": "predict_like_score",
+              "name": "commentPredictLikeScoreKV",
+              "type": "float"
+            },
+            {
+              "as": "predict_reply_score",
+              "name": "commentPredictReplyScoreKV",
+              "type": "float"
+            },
+            {
+              "as": "quality_v2_score",
+              "name": "commentQualityScoreV2KV",
+              "type": "float"
+            }
+          ],
+          "downstream_processor": "risk_filter",
+          "photo_store_kconf_key": "cc.knowledgeGraph.hotCommentStoreConfig",
+          "type_name": "CommonRecoDistributedIndexAttrKVItemAttrEnricher"
+        },
+        "get_kconf_params_6AD678": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "random_filter_threshold"
+            ],
+            "$output_item_attrs": []
+          },
+          "kconf_configs": [
+            {
+              "default_value": 0.0,
+              "export_common_attr": "random_filter_threshold",
+              "json_path": "random_filter_threshold",
+              "kconf_key": "cc.knowledgeGraph.temporalSampleConf"
+            }
+          ],
+          "type_name": "CommonRecoKconfCommonAttrEnricher"
+        },
+        "leaf_show_C4F013": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "device_id",
+              "llsid",
+              "photo_author_id",
+              "photo_id",
+              "user_id"
+            ],
+            "$input_item_attrs": [
+              "author_id",
+              "comment_content_segs",
+              "comment_genre",
+              "comment_id",
+              "comment_index",
+              "dislike_cnt",
+              "like_cnt",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "predict_like_score",
+              "predict_reply_score",
+              "quality_score",
+              "quality_v2_score",
+              "realshow_cnt",
+              "recall_type",
+              "related_score",
+              "reply_cnt",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "attrs": [
+            "comment_id",
+            "comment_index",
+            "like_cnt",
+            "reply_cnt",
+            "dislike_cnt",
+            "realshow_cnt",
+            "author_id",
+            "minute_diff",
+            "comment_content_segs",
+            "comment_genre",
+            "risk_insult_tag",
+            "risk_negative_tag",
+            "risk_inactive_tag",
+            "mmu_category_tag",
+            "mmu_emotion_tag",
+            "mmu_entity_list",
+            "recall_type",
+            "related_score",
+            "quality_score",
+            "predict_like_score",
+            "predict_reply_score",
+            "quality_v2_score"
+          ],
+          "biz_name": "hot_comment_leaf",
+          "enable_leaf_show": true,
+          "extra_common_attrs": [
+            "llsid",
+            "user_id",
+            "device_id",
+            "photo_id",
+            "photo_author_id"
+          ],
+          "kafka_topic": "reco_temporal_comment_leaf_show",
+          "producer_type": "kafka",
+          "respect_request_num": false,
+          "send_item_base_info": false,
+          "send_one_request": true,
+          "type_name": "CommonRecoLeafShowObserver",
+          "use_device_id": true
+        },
+        "log_debug_info_0111F1": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "device_id",
+              "llsid",
+              "photo_author_id",
+              "photo_id",
+              "user_id"
+            ],
+            "$input_item_attrs": [
+              "author_id",
+              "comment_content_segs",
+              "comment_genre",
+              "comment_id",
+              "comment_index",
+              "dislike_cnt",
+              "like_cnt",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "realshow_cnt",
+              "recall_type",
+              "reply_cnt",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "common_attrs": [
+            "llsid",
+            "user_id",
+            "device_id",
+            "photo_id",
+            "photo_author_id"
+          ],
+          "for_debug_request_only": false,
+          "item_attrs": [
+            "comment_id",
+            "comment_index",
+            "like_cnt",
+            "reply_cnt",
+            "dislike_cnt",
+            "realshow_cnt",
+            "author_id",
+            "minute_diff",
+            "comment_content_segs",
+            "comment_genre",
+            "risk_insult_tag",
+            "risk_negative_tag",
+            "risk_inactive_tag",
+            "mmu_category_tag",
+            "mmu_emotion_tag",
+            "mmu_entity_list",
+            "recall_type"
+          ],
+          "respect_sample_logging": true,
+          "type_name": "CommonRecoDebugInfoObserver"
+        },
+        "log_debug_info_1A2FED": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "clean_content",
+              "comment_content"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "for_debug_request_only": false,
+          "item_attrs": [
+            "comment_content",
+            "clean_content"
+          ],
+          "respect_sample_logging": true,
+          "type_name": "CommonRecoDebugInfoObserver"
+        },
+        "parse_protobuf_from_string_84F799": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "show_comment_str"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "show_comment"
+            ],
+            "$output_item_attrs": []
+          },
+          "class_name": "kuaishou.dp.schema.proto.kscdm.dwdkscsmshowcmtphotort.DwdKsCsmShowCmtPhotoRt",
+          "input_attr": "show_comment_str",
+          "output_attr": "show_comment",
+          "type_name": "CommonRecoProtobufParseAttrEnricher",
+          "use_dynamic_proto": true
+        },
+        "perflog_attr_value_4E481D": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "client_minute_diff",
+              "server_minute_diff"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "comment.temporal",
+          "common_attrs": [
+            "client_minute_diff",
+            "server_minute_diff"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "perflog_attr_value_871A6C": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "common_recall_type"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "aggregator": "count",
+          "check_point": "comment.recall",
+          "common_attrs": [
+            "common_recall_type"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "perflog_attr_value_B6CC03": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "common_comment_index",
+              "is_second_comment"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "comment.attr",
+          "common_attrs": [
+            "is_second_comment",
+            "common_comment_index"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "perflog_attr_value_D48395": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "content_filter_cnt",
+              "random_filter_cnt",
+              "risk_filter_cnt"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "filter.statis",
+          "common_attrs": [
+            "risk_filter_cnt",
+            "content_filter_cnt",
+            "random_filter_cnt"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "random_filter": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "random_filter_threshold"
+            ],
+            "$input_item_attrs": [
+              "sample_random"
+            ],
+            "$modify_item_tables": [
+              ""
+            ],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "rule": {
+            "attr_name": "sample_random",
+            "compare_to": "{{random_filter_threshold}}",
+            "remove_if": "<"
+          },
+          "type_name": "CommonRecoRuleFilterArranger"
+        },
+        "reset_user_meta_info_053ACC": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "client_timestamp",
+              "user_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "device_id_attr": "device_id",
+          "time_unit": "ms",
+          "timestamp_attr": "client_timestamp",
+          "type_name": "OfflineResetUserMetaInfoEnricher",
+          "user_id_attr": "user_id"
+        },
+        "retrieve_by_common_attr_CA4C4A": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "common_comment_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "attrs": [
+            {
+              "name": "common_comment_id",
+              "reason": 999
+            }
+          ],
+          "type_name": "CommonRecoCommonAttrRetriever"
+        },
+        "return__16C414": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "_if_control_attr_3"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "skip": "{{_if_control_attr_3}}",
+          "status_code": 0,
+          "type_name": "CommonRecoExecutionStatusEnricher"
+        },
+        "return__28C561": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "_if_control_attr_1"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "skip": "{{_if_control_attr_1}}",
+          "status_code": 0,
+          "type_name": "CommonRecoExecutionStatusEnricher"
+        },
+        "return__6A0259": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "_if_control_attr_2"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "skip": "{{_if_control_attr_2}}",
+          "status_code": 0,
+          "type_name": "CommonRecoExecutionStatusEnricher"
+        },
+        "risk_filter": {
+          "$metadata": {
+            "$downstream_item_attrs": [
+              "comment_content",
+              "comment_content_segs",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "predict_like_score",
+              "predict_reply_score",
+              "quality_score",
+              "quality_v2_score",
+              "realshow_cnt",
+              "related_score",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "timestamp"
+            ],
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag"
+            ],
+            "$modify_item_tables": [
+              ""
+            ],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "rule": {
+            "filters": [
+              {
+                "attr_name": "risk_insult_tag",
+                "compare_to": 0,
+                "remove_if": ">"
+              },
+              {
+                "attr_name": "risk_negative_tag",
+                "compare_to": 0,
+                "remove_if": ">"
+              },
+              {
+                "attr_name": "risk_inactive_tag",
+                "compare_to": 0,
+                "remove_if": ">"
+              }
+            ],
+            "join": "or"
+          },
+          "type_name": "CommonRecoRuleFilterArranger"
+        },
+        "set_attr_value_B7FCB6": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "comment_content_segs",
+              "comment_genre",
+              "dislike_cnt",
+              "like_cnt",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "realshow_cnt",
+              "reply_cnt",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "timestamp"
+            ]
+          },
+          "item_attrs": [
+            {
+              "name": "like_cnt",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "reply_cnt",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "dislike_cnt",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "timestamp",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "realshow_cnt",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "comment_content_segs",
+              "type": "string_list",
+              "value": []
+            },
+            {
+              "name": "comment_genre",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "risk_insult_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "risk_negative_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "risk_inactive_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "mmu_category_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "mmu_emotion_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "mmu_entity_list",
+              "type": "int_list",
+              "value": []
+            }
+          ],
+          "no_overwrite": true,
+          "type_name": "CommonRecoItemAttrDefaultValueEnricher"
+        }
+      },
+      "type_name": "CommonRecoPipeline"
+    },
+    "dynamic_proto": [
+      {
+        "content": "\n            syntax = \"proto3\";\n\n            option java_package = \"com.kuaishou.protobuf.dp.schema.proto.kscdm.dwdkscsmshowcmtphotort\";\n            option java_multiple_files = true;\n            package kuaishou.dp.schema.proto.kscdm.dwdkscsmshowcmtphotort;\n            option java_outer_classname=\"DwdKsCsmShowCmtPhotoRtFileOuterClass\";\n\n            message DwdKsCsmShowCmtPhotoRt{\n                string product = 1;\n                string device_id = 2;\n                string global_id = 3;\n                int64 client_timestamp = 4;\n                int64 server_timestamp = 5;\n                int64 user_id = 6;\n                int64 photo_id = 7;\n                int64 author_id = 8;\n                string llsid = 9;\n                string exp_tag = 10;\n                string content_source_exp = 11;\n                string content_source_page_tag = 12;\n                int64 is_second_comment = 13;\n                string ab_mapping_ids = 14;\n                int64 comment_id = 15;\n                int64 comment_user_id = 16;\n                int64 comment_index = 17;\n\t            int64 recall_type = 18;\n            }\n\n        ",
+        "deps": [],
+        "file_name": "dwd_ks_csm_show_cmt_photo_rt.proto"
+      }
+    ],
+    "flat_index_attrs_with_kconf_key": {
+      "cc.knowledgeGraph.hotCommentStoreConfig": [
+        {
+          "as": "timestamp",
+          "name": "commentTimestampKV",
+          "type": "auto"
+        },
+        {
+          "as": "realshow_cnt",
+          "name": "commentRealshowCounterV2",
+          "type": "auto"
+        },
+        {
+          "as": "comment_content",
+          "name": "commentContentKV",
+          "type": "auto"
+        },
+        {
+          "as": "comment_content_segs",
+          "name": "commentContentSplitList",
+          "type": "auto"
+        },
+        {
+          "as": "risk_insult_tag",
+          "name": "commentPunishTagRumaKV",
+          "type": "auto"
+        },
+        {
+          "as": "risk_negative_tag",
+          "name": "commentPunishTagNegativeKV",
+          "type": "auto"
+        },
+        {
+          "as": "risk_inactive_tag",
+          "name": "commentPunishTagFanNegativeKV",
+          "type": "auto"
+        },
+        {
+          "as": "mmu_category_tag",
+          "name": "commentCategoryTagKV",
+          "type": "auto"
+        },
+        {
+          "as": "mmu_emotion_tag",
+          "name": "commentEmotionTagKV",
+          "type": "auto"
+        },
+        {
+          "as": "mmu_entity_list",
+          "name": "commentEntityTagList",
+          "type": "auto"
+        },
+        {
+          "as": "quality_score",
+          "name": "commentQualityScoreKV",
+          "type": "float"
+        },
+        {
+          "as": "related_score",
+          "name": "commentRelatedScoreKV",
+          "type": "float"
+        },
+        {
+          "as": "predict_like_score",
+          "name": "commentPredictLikeScoreKV",
+          "type": "float"
+        },
+        {
+          "as": "predict_reply_score",
+          "name": "commentPredictReplyScoreKV",
+          "type": "float"
+        },
+        {
+          "as": "quality_v2_score",
+          "name": "commentQualityScoreV2KV",
+          "type": "float"
+        }
+      ]
+    },
+    "pipeline_map": {
+      "send_temporal_comment_flow": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "fetch_message_6C725C",
+          "parse_protobuf_from_string_84F799",
+          "enrich_with_protobuf_C1D332",
+          "perflog_attr_value_B6CC03",
+          "_branch_controller_2253ED6E",
+          "return__28C561",
+          "perflog_attr_value_871A6C",
+          "_branch_controller_16FB84C2",
+          "return__6A0259",
+          "enrich_attr_by_lua_1E6002",
+          "perflog_attr_value_4E481D",
+          "retrieve_by_common_attr_CA4C4A",
+          "copy_item_meta_info_A7F5B2",
+          "copy_attr_176825",
+          "get_item_attr_by_distributed_common_index_6DA9D8",
+          "risk_filter",
+          "count_reco_result_579D4D",
+          "enrich_attr_by_lua_E19BDC",
+          "log_debug_info_1A2FED",
+          "content_filter",
+          "count_reco_result_AD635A",
+          "get_kconf_params_6AD678",
+          "gen_random_item_attr_78CA86",
+          "random_filter",
+          "count_reco_result_42DA41",
+          "perflog_attr_value_D48395",
+          "count_reco_result_6097D5",
+          "_branch_controller_F3BDCC62",
+          "return__16C414",
+          "set_attr_value_B7FCB6",
+          "enrich_attr_by_lua_5FC91F",
+          "reset_user_meta_info_053ACC",
+          "log_debug_info_0111F1",
+          "leaf_show_C4F013"
+        ]
+      }
+    }
+  },
+  "runner_pipeline_group": {
+    "default_name": {
+      "core_num_thread_ratio": 0.0,
+      "pipeline": [
+        "send_temporal_comment_flow"
+      ],
+      "thread_num": -1
+    }
+  },
+  "service_identifier": "send_temporal_comment_sample"
+}

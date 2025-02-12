@@ -1,0 +1,5 @@
+--log_dir=../log/
+--grpc_thread_num_per_core=4.0
+
+--logging_switch_uid_mod_divisor=19999
+--thread_num=72

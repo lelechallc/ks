@@ -1,0 +1,2077 @@
+{
+  "_CONFIG_VERSION": "c4ed408188558defba04353c2f1743ce_local",
+  "_DRAGONFLY_CREATE_TIME": "2025-01-20 11:39:15",
+  "_DRAGONFLY_VERSION": "0.8.2",
+  "kess_config": {},
+  "pipeline_manager_config": {
+    "base_pipeline": {
+      "processor": {
+        "_branch_controller_DE417B84": {
+          "$branch_start": "_branch_controller_DE417B84",
+          "$code_info": "[if] DE417B84 cofea_reader.py in <module>(): .if_(\"show_item_cnt <= 0\")",
+          "$metadata": {
+            "$input_common_attrs": [
+              "show_item_cnt"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "_if_control_attr_1"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "_if_control_attr_1"
+          ],
+          "for_branch_control": true,
+          "function_for_common": "evaluate",
+          "import_common_attr": [
+            "show_item_cnt"
+          ],
+          "lua_script": "function evaluate() if (show_item_cnt <= 0) then return false else return true end end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "copy_item_meta_info_6E522F": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "comment_id"
+            ]
+          },
+          "save_item_key_to_attr": "comment_id",
+          "type_name": "CommonRecoItemMetaInfoEnricher"
+        },
+        "count_reco_result_4A45F6": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "final_seq_cnt"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "final_seq_cnt",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "count_reco_result_FC0C3F": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "showAction"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "show_item_cnt"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "show_item_cnt",
+          "select_item": {
+            "attr_name": "showAction",
+            "compare_to": 0,
+            "select_if": ">",
+            "select_if_attr_missing": false
+          },
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "enrich_attr_by_lua_0F1112": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "audience_pxtr",
+              "continuous_expand_pxtr",
+              "copy_pxtr",
+              "expand_pxtr",
+              "like_pxtr",
+              "reply_pxtr",
+              "share_pxtr"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "audience_pxtr_dis",
+              "continuous_expand_pxtr_dis",
+              "copy_pxtr_dis",
+              "expand_pxtr_dis",
+              "like_pxtr_dis",
+              "reply_pxtr_dis",
+              "share_pxtr_dis"
+            ]
+          },
+          "export_item_attr": [
+            "like_pxtr_dis",
+            "reply_pxtr_dis",
+            "expand_pxtr_dis",
+            "continuous_expand_pxtr_dis",
+            "copy_pxtr_dis",
+            "share_pxtr_dis",
+            "audience_pxtr_dis"
+          ],
+          "function_for_item": "get_pxtr_discreate",
+          "import_item_attr": [
+            "like_pxtr",
+            "reply_pxtr",
+            "expand_pxtr",
+            "continuous_expand_pxtr",
+            "copy_pxtr",
+            "share_pxtr",
+            "audience_pxtr"
+          ],
+          "lua_script": "function get_pxtr_discreate()\n\n                local like_pxtr_dis = math.max(math.min(like_pxtr // 0.001, 1000), 0) * 1\n                local reply_pxtr_dis = math.max(math.min(reply_pxtr // 0.001, 1000), 0) * 1\n                local expand_pxtr_dis = math.max(math.min(expand_pxtr // 0.001, 1000), 0) * 1\n                local continuous_expand_pxtr_dis = math.max(math.min(continuous_expand_pxtr // 0.001, 1000), 0) * 1\n                local copy_pxtr_dis = math.max(math.min(copy_pxtr // 0.001, 1000), 0) * 1\n                local share_pxtr_dis = math.max(math.min(share_pxtr // 0.001, 1000), 0) * 1\n                local audience_pxtr_dis = math.max(math.min(audience_pxtr // 0.001, 1000), 0) * 1\n\n                return math.ceil(like_pxtr_dis), math.ceil(reply_pxtr_dis), math.ceil(expand_pxtr_dis),\n                       math.ceil(continuous_expand_pxtr_dis), math.ceil(copy_pxtr_dis), math.ceil(share_pxtr_dis),\n                       math.ceil(audience_pxtr_dis)\n            end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_1DB2FE": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "audienceAction_first",
+              "audienceAction_second",
+              "copyAction_first",
+              "copyAction_second",
+              "expandAction",
+              "expandAction_first",
+              "likeAction",
+              "likeAction_first",
+              "likeAction_second",
+              "replyAction",
+              "replyAction_first",
+              "replyAction_second",
+              "shareAction_first",
+              "shareAction_second",
+              "show",
+              "stayDurationMs",
+              "stayDurationMs_second"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "audience",
+              "audience_v",
+              "continuous",
+              "continuous_v",
+              "copy",
+              "copy_v",
+              "expand",
+              "expand_v",
+              "like",
+              "like_v",
+              "reply",
+              "reply_v",
+              "share",
+              "share_v",
+              "show_v",
+              "staytime",
+              "staytime_v"
+            ]
+          },
+          "export_item_attr": [
+            "expand",
+            "like",
+            "reply",
+            "copy",
+            "share",
+            "audience",
+            "continuous",
+            "staytime",
+            "expand_v",
+            "like_v",
+            "reply_v",
+            "copy_v",
+            "share_v",
+            "audience_v",
+            "continuous_v",
+            "staytime_v",
+            "show_v"
+          ],
+          "function_for_item": "transform",
+          "import_item_attr": [
+            "expandAction",
+            "likeAction",
+            "replyAction",
+            "expandAction_first",
+            "likeAction_first",
+            "likeAction_second",
+            "replyAction_first",
+            "replyAction_second",
+            "copyAction_first",
+            "copyAction_second",
+            "shareAction_first",
+            "shareAction_second",
+            "audienceAction_first",
+            "audienceAction_second",
+            "stayDurationMs",
+            "stayDurationMs_second",
+            "show"
+          ],
+          "lua_script": "function transform()\n                local expand = (expandAction_first > 0) and 1 or 0\n                local continuous = (expandAction_first > 1) and 1 or 0\n                local like = (likeAction_first > 0 or likeAction_second > 0) and 1 or 0\n                local reply = (replyAction_first > 0 or replyAction_second > 0) and 1 or 0\n                local copy = (copyAction_first > 0 or copyAction_second > 0) and 1 or 0\n                local share = (shareAction_first > 0 or shareAction_second > 0) and 1 or 0\n                local audience = (audienceAction_first > 0 or audienceAction_second > 0) and 1 or 0\n                local staytime = stayDurationMs + stayDurationMs_second\n\n                return expand, like, reply, copy, share, audience, continuous, staytime,\n                    expand * 1.0, like * 1.0, reply * 1.0, copy * 1.0, share * 1.0, audience * 1.0, continuous * 1.0, staytime * 1.0,\n                    show * 1.0\n            end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_2AF6DB": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "request_time"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "sample_minute_diff",
+              "time_ms"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "time_ms",
+            "sample_minute_diff"
+          ],
+          "function_for_common": "cal",
+          "import_common_attr": [
+            "request_time"
+          ],
+          "lua_script": "function cal()\n                local time_ms = request_time // 1000\n                local sample_minute_diff = (util.GetTimestamp() - request_time) / 1000 / 1000 / 60.0\n                return time_ms, sample_minute_diff\n            end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_484291": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "like_cnt",
+              "realshow_cnt",
+              "reply_cnt"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "ltr",
+              "rtr"
+            ]
+          },
+          "export_item_attr": [
+            "ltr",
+            "rtr"
+          ],
+          "function_for_item": "cal_xtr",
+          "import_item_attr": [
+            "like_cnt",
+            "reply_cnt",
+            "realshow_cnt"
+          ],
+          "lua_script": "function cal_xtr()\n          local vv = realshow_cnt or 0.0\n          local ltr = like_cnt / (vv + 1.0)\n          local rtr = reply_cnt / (vv + 1.0)\n          return ltr, rtr\n        end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_6F04E0": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "gender",
+              "photo_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "photo_hash"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "photo_hash"
+          ],
+          "function_for_common": "get_photo_hash",
+          "import_common_attr": [
+            "photo_id",
+            "age_segment",
+            "gender"
+          ],
+          "lua_script": "function get_photo_hash()\n          local photo_hash_str = tostring(photo_id) .. tostring(age_segment) .. tostring(gender)\n          return util.CityHash64(photo_hash_str)\n        end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_7634C3": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "dislike_cnt",
+              "like_cnt",
+              "ltr",
+              "minute_diff",
+              "reply_cnt",
+              "rtr"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "dislike_cnt_dis",
+              "like_cnt_dis",
+              "ltr_dis",
+              "minute_diff_dis",
+              "reply_cnt_dis",
+              "rtr_dis"
+            ]
+          },
+          "export_item_attr": [
+            "like_cnt_dis",
+            "reply_cnt_dis",
+            "minute_diff_dis",
+            "ltr_dis",
+            "rtr_dis",
+            "dislike_cnt_dis"
+          ],
+          "function_for_item": "discreate",
+          "import_item_attr": [
+            "like_cnt",
+            "reply_cnt",
+            "minute_diff",
+            "ltr",
+            "rtr",
+            "dislike_cnt"
+          ],
+          "lua_script": "function discreate()\n                local like_cnt_dis = math.max(math.min(like_cnt // 5, 100000), 0) * 1\n                local reply_cnt_dis = math.max(math.min(reply_cnt // 5, 100000), 0) * 1\n                local minute_diff_dis = math.max(math.min(minute_diff // 3, 14400), 0) * 1\n                local ltr_dis = math.max(math.min(ltr * 1000, 100000), 0) * 137\n                local rtr_dis = math.max(math.min(rtr * 1000, 100000), 0) * 137\n                local dislike_cnt_dis = math.max(math.min(dislike_cnt // 3, 100000), 0) * 1\n                return math.ceil(like_cnt_dis), math.ceil(reply_cnt_dis), math.ceil(minute_diff_dis),\n                       math.ceil(ltr_dis), math.ceil(rtr_dis), math.ceil(dislike_cnt_dis)\n            end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_77AD94": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "showAction"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "show"
+            ]
+          },
+          "export_item_attr": [
+            "show"
+          ],
+          "function_for_item": "check_show",
+          "import_item_attr": [
+            "showAction"
+          ],
+          "lua_script": "function check_show()\n                local show = (showAction or 0) > 0\n                return show\n            end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_7EF2D8": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "audience",
+              "audienceAction",
+              "continuous",
+              "copy",
+              "expand",
+              "expandAction",
+              "like",
+              "likeAction",
+              "reply",
+              "replyAction",
+              "reportAction",
+              "share",
+              "showAction",
+              "staytime"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "calc_weight"
+            ]
+          },
+          "export_item_attr": [
+            "calc_weight"
+          ],
+          "function_for_item": "calc",
+          "import_item_attr": [
+            "showAction",
+            "expandAction",
+            "replyAction",
+            "likeAction",
+            "audienceAction",
+            "reportAction",
+            "expand",
+            "like",
+            "reply",
+            "copy",
+            "share",
+            "audience",
+            "continuous",
+            "staytime"
+          ],
+          "lua_script": "function calc()\n          local weight = 1.0\n          if (expand or 0) > 0 then\n            weight = weight + 3.0\n          end\n          if (reply or 0) > 0 then\n            weight = weight + 5.0\n          end\n          if (like or 0) > 0 then\n            weight = weight + 3.0\n          end\n          if (copy or 0) > 0 then\n            weight = weight + 3.0\n          end\n          if (share or 0) > 0 then\n            weight = weight + 3.0\n          end\n          if (audience or 0) > 0 then\n            weight = weight + 3.0\n          end\n          if (reportAction or 0) > 0 then\n            weight = weight + 8.0\n          end\n          return weight\n        end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_9F0CDF": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "final_seq_cnt"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "mask_pack"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "mask_pack"
+          ],
+          "function_for_common": "gen_mask_pack",
+          "import_common_attr": [
+            "final_seq_cnt"
+          ],
+          "lua_script": "function gen_mask_pack()\n                local mask_pack = {}\n                for i=1, final_seq_cnt do\n                    table.insert(mask_pack, 1)\n                end\n                while #mask_pack < 20 do\n                    table.insert(mask_pack, 0)\n                end\n                return mask_pack\n            end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_AF7E6F": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "device_id",
+              "user_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "user_hash"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "user_hash"
+          ],
+          "function_for_common": "get_hash",
+          "import_common_attr": [
+            "user_id",
+            "device_id"
+          ],
+          "lua_script": "function get_hash()\n          if device_id == nil or device_id == \"\" then\n            return tonumber(user_id or '0')\n          end\n          return util.CityHash64(device_id)\n        end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "extract_kuiba_parameter_CD75FF": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "audience_pxtr_dis_list",
+              "author_id_list",
+              "comment_genre_list",
+              "comment_id_list",
+              "continuous_expand_pxtr_dis_list",
+              "copy_pxtr_dis_list",
+              "dislike_cnt_dis_list",
+              "expand_pxtr_dis_list",
+              "gender",
+              "like_cnt_dis_list",
+              "like_pxtr_dis_list",
+              "ltr_dis_list",
+              "minute_diff_dis_list",
+              "mmu_category_tag_list",
+              "mmu_emotion_tag_list",
+              "photo_author_id",
+              "photo_id",
+              "reply_cnt_dis_list",
+              "reply_pxtr_dis_list",
+              "risk_inactive_tag_list",
+              "risk_insult_tag_list",
+              "risk_negative_tag_list",
+              "rtr_dis_list",
+              "share_pxtr_dis_list"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "comment_common_signs",
+              "comment_common_slots"
+            ],
+            "$output_item_attrs": []
+          },
+          "config": {
+            "age_segment": {
+              "attrs": [
+                {
+                  "attr": [
+                    "age_segment"
+                  ],
+                  "converter": "id",
+                  "key_type": 102,
+                  "mio_slot_key_type": 102
+                }
+              ]
+            },
+            "audience_pxtr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "audience_pxtr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 247,
+                  "mio_slot_key_type": 247,
+                  "type": 5
+                }
+              ]
+            },
+            "author_id_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "author_id_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 202,
+                  "mio_slot_key_type": 202,
+                  "type": 5
+                }
+              ]
+            },
+            "comment_genre_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "comment_genre_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 209,
+                  "mio_slot_key_type": 209,
+                  "type": 5
+                }
+              ]
+            },
+            "comment_id_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "comment_id_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 201,
+                  "mio_slot_key_type": 201,
+                  "type": 5
+                }
+              ]
+            },
+            "continuous_expand_pxtr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "continuous_expand_pxtr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 244,
+                  "mio_slot_key_type": 244,
+                  "type": 5
+                }
+              ]
+            },
+            "copy_pxtr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "copy_pxtr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 245,
+                  "mio_slot_key_type": 245,
+                  "type": 5
+                }
+              ]
+            },
+            "dislike_cnt_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "dislike_cnt_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 208,
+                  "mio_slot_key_type": 208,
+                  "type": 5
+                }
+              ]
+            },
+            "expand_pxtr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "expand_pxtr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 243,
+                  "mio_slot_key_type": 243,
+                  "type": 5
+                }
+              ]
+            },
+            "gender": {
+              "attrs": [
+                {
+                  "attr": [
+                    "gender"
+                  ],
+                  "converter": "id",
+                  "key_type": 101,
+                  "mio_slot_key_type": 101
+                }
+              ]
+            },
+            "like_cnt_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "like_cnt_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 203,
+                  "mio_slot_key_type": 203,
+                  "type": 5
+                }
+              ]
+            },
+            "like_pxtr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "like_pxtr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 241,
+                  "mio_slot_key_type": 241,
+                  "type": 5
+                }
+              ]
+            },
+            "ltr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "ltr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 206,
+                  "mio_slot_key_type": 206,
+                  "type": 5
+                }
+              ]
+            },
+            "minute_diff_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "minute_diff_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 205,
+                  "mio_slot_key_type": 205,
+                  "type": 5
+                }
+              ]
+            },
+            "mmu_category_tag_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "mmu_category_tag_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 213,
+                  "mio_slot_key_type": 213,
+                  "type": 5
+                }
+              ]
+            },
+            "mmu_emotion_tag_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "mmu_emotion_tag_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 214,
+                  "mio_slot_key_type": 214,
+                  "type": 5
+                }
+              ]
+            },
+            "photo_author_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "photo_author_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 202,
+                  "mio_slot_key_type": 104
+                }
+              ]
+            },
+            "photo_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "photo_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 103,
+                  "mio_slot_key_type": 103
+                }
+              ]
+            },
+            "reply_cnt_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "reply_cnt_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 204,
+                  "mio_slot_key_type": 204,
+                  "type": 5
+                }
+              ]
+            },
+            "reply_pxtr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "reply_pxtr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 242,
+                  "mio_slot_key_type": 242,
+                  "type": 5
+                }
+              ]
+            },
+            "risk_inactive_tag_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_inactive_tag_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 212,
+                  "mio_slot_key_type": 212,
+                  "type": 5
+                }
+              ]
+            },
+            "risk_insult_tag_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_insult_tag_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 210,
+                  "mio_slot_key_type": 210,
+                  "type": 5
+                }
+              ]
+            },
+            "risk_negative_tag_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_negative_tag_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 211,
+                  "mio_slot_key_type": 211,
+                  "type": 5
+                }
+              ]
+            },
+            "rtr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "rtr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 207,
+                  "mio_slot_key_type": 207,
+                  "type": 5
+                }
+              ]
+            },
+            "share_pxtr_dis_list": {
+              "attrs": [
+                {
+                  "attr": [
+                    "share_pxtr_dis_list"
+                  ],
+                  "converter": "list",
+                  "converter_args": {
+                    "enable_filter": false,
+                    "limit": 20,
+                    "reversed": false
+                  },
+                  "key_type": 246,
+                  "mio_slot_key_type": 246,
+                  "type": 5
+                }
+              ]
+            }
+          },
+          "is_common_attr": true,
+          "parameters_output": "comment_common_signs",
+          "slots_output": "comment_common_slots",
+          "type_name": "KuibaParameterAttrEnricher"
+        },
+        "fake_retrieve_CFF7F5": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "item_keys": [
+            111
+          ],
+          "reason": 888,
+          "type_name": "CommonRecoFakeRetriever"
+        },
+        "fetch_message_A5FE78": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "raw_context_str"
+            ],
+            "$output_item_attrs": []
+          },
+          "group_id": "hot_comment_rerank_evaluator",
+          "kafka_topic": "reco_all_comment_join_listwise_sample",
+          "output_attr": "raw_context_str",
+          "type_name": "OfflineMessageFetchEnricher"
+        },
+        "log_debug_info_DA9637": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "device_id",
+              "gender",
+              "llsid",
+              "photo_author_id",
+              "photo_id",
+              "request_time",
+              "user_id"
+            ],
+            "$input_item_attrs": [
+              "audienceAction",
+              "audienceAction_first",
+              "audienceAction_second",
+              "audience_pxtr",
+              "author_id",
+              "comment_genre",
+              "comment_id",
+              "comment_stay_time",
+              "continuous_expand_pxtr",
+              "copyAction_first",
+              "copyAction_second",
+              "copy_pxtr",
+              "dislike_cnt",
+              "expandAction",
+              "expandAction_first",
+              "expand_pxtr",
+              "likeAction",
+              "likeAction_first",
+              "likeAction_second",
+              "like_cnt",
+              "like_pxtr",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "realshow_cnt",
+              "replyAction",
+              "replyAction_first",
+              "replyAction_second",
+              "reply_cnt",
+              "reply_pxtr",
+              "reportAction",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "shareAction_first",
+              "shareAction_second",
+              "share_pxtr",
+              "showAction",
+              "stayDurationMs",
+              "stayDurationMs_second",
+              "subShowCntAction"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "common_attrs": [
+            "user_id",
+            "device_id",
+            "photo_id",
+            "photo_author_id",
+            "gender",
+            "age_segment",
+            "llsid",
+            "request_time"
+          ],
+          "for_debug_request_only": false,
+          "item_attrs": [
+            "comment_id",
+            "author_id",
+            "like_cnt",
+            "reply_cnt",
+            "realshow_cnt",
+            "dislike_cnt",
+            "showAction",
+            "expandAction",
+            "replyAction",
+            "likeAction",
+            "audienceAction",
+            "reportAction",
+            "comment_genre",
+            "risk_insult_tag",
+            "risk_negative_tag",
+            "risk_inactive_tag",
+            "mmu_category_tag",
+            "mmu_emotion_tag",
+            "subShowCntAction",
+            "expandAction_first",
+            "likeAction_first",
+            "likeAction_second",
+            "replyAction_first",
+            "replyAction_second",
+            "copyAction_first",
+            "copyAction_second",
+            "shareAction_first",
+            "shareAction_second",
+            "audienceAction_first",
+            "audienceAction_second",
+            "stayDurationMs",
+            "stayDurationMs_second",
+            "comment_stay_time",
+            "mmu_entity_list",
+            "minute_diff",
+            "like_pxtr",
+            "reply_pxtr",
+            "expand_pxtr",
+            "continuous_expand_pxtr",
+            "copy_pxtr",
+            "share_pxtr",
+            "audience_pxtr"
+          ],
+          "respect_sample_logging": true,
+          "type_name": "CommonRecoDebugInfoObserver"
+        },
+        "log_debug_info_FD7D31": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "comment_common_signs",
+              "comment_common_slots",
+              "context_info",
+              "device_id",
+              "gender",
+              "llsid",
+              "mask_pack",
+              "photo_author_id",
+              "photo_id",
+              "time_ms",
+              "user_id"
+            ],
+            "$input_item_attrs": [
+              "expandAction",
+              "expandAction_v",
+              "likeAction",
+              "likeAction_v",
+              "replyAction",
+              "replyAction_v",
+              "sample_weight"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "common_attrs": [
+            "llsid",
+            "user_id",
+            "device_id",
+            "time_ms",
+            "gender",
+            "age_segment",
+            "photo_id",
+            "photo_author_id",
+            "context_info",
+            "comment_common_slots",
+            "comment_common_signs",
+            "mask_pack"
+          ],
+          "for_debug_request_only": false,
+          "item_attrs": [
+            "sample_weight",
+            "expandAction",
+            "likeAction",
+            "replyAction",
+            "expandAction_v",
+            "likeAction_v",
+            "replyAction_v"
+          ],
+          "respect_sample_logging": true,
+          "type_name": "CommonRecoDebugInfoObserver"
+        },
+        "pack_item_attr_B7C8BB": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "audience_pxtr_dis",
+              "audience_v",
+              "author_id",
+              "comment_genre",
+              "comment_id",
+              "continuous_expand_pxtr_dis",
+              "continuous_v",
+              "copy_pxtr_dis",
+              "copy_v",
+              "dislike_cnt_dis",
+              "expand_pxtr_dis",
+              "expand_v",
+              "like_cnt_dis",
+              "like_pxtr_dis",
+              "like_v",
+              "ltr_dis",
+              "minute_diff_dis",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "reply_cnt_dis",
+              "reply_pxtr_dis",
+              "reply_v",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "rtr_dis",
+              "sample_weight",
+              "share_pxtr_dis",
+              "share_v",
+              "show_v",
+              "staytime_v"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "audience_pxtr_dis_list",
+              "audience_v_pack",
+              "author_id_list",
+              "comment_genre_list",
+              "comment_id_list",
+              "continuous_expand_pxtr_dis_list",
+              "continuous_v_pack",
+              "copy_pxtr_dis_list",
+              "copy_v_pack",
+              "dislike_cnt_dis_list",
+              "expand_pxtr_dis_list",
+              "expand_v_pack",
+              "like_cnt_dis_list",
+              "like_pxtr_dis_list",
+              "like_v_pack",
+              "ltr_dis_list",
+              "minute_diff_dis_list",
+              "mmu_category_tag_list",
+              "mmu_emotion_tag_list",
+              "reply_cnt_dis_list",
+              "reply_pxtr_dis_list",
+              "reply_v_pack",
+              "risk_inactive_tag_list",
+              "risk_insult_tag_list",
+              "risk_negative_tag_list",
+              "rtr_dis_list",
+              "sample_weight_pack",
+              "share_pxtr_dis_list",
+              "share_v_pack",
+              "show_v_pack",
+              "staytime_v_pack"
+            ],
+            "$output_item_attrs": []
+          },
+          "item_source": {
+            "reco_results": true
+          },
+          "mappings": [
+            {
+              "from_item_attr": "comment_id",
+              "to_common_attr": "comment_id_list"
+            },
+            {
+              "from_item_attr": "author_id",
+              "to_common_attr": "author_id_list"
+            },
+            {
+              "from_item_attr": "like_cnt_dis",
+              "to_common_attr": "like_cnt_dis_list"
+            },
+            {
+              "from_item_attr": "reply_cnt_dis",
+              "to_common_attr": "reply_cnt_dis_list"
+            },
+            {
+              "from_item_attr": "minute_diff_dis",
+              "to_common_attr": "minute_diff_dis_list"
+            },
+            {
+              "from_item_attr": "ltr_dis",
+              "to_common_attr": "ltr_dis_list"
+            },
+            {
+              "from_item_attr": "rtr_dis",
+              "to_common_attr": "rtr_dis_list"
+            },
+            {
+              "from_item_attr": "dislike_cnt_dis",
+              "to_common_attr": "dislike_cnt_dis_list"
+            },
+            {
+              "from_item_attr": "sample_weight",
+              "to_common_attr": "sample_weight_pack"
+            },
+            {
+              "from_item_attr": "expand_v",
+              "to_common_attr": "expand_v_pack"
+            },
+            {
+              "from_item_attr": "like_v",
+              "to_common_attr": "like_v_pack"
+            },
+            {
+              "from_item_attr": "reply_v",
+              "to_common_attr": "reply_v_pack"
+            },
+            {
+              "from_item_attr": "copy_v",
+              "to_common_attr": "copy_v_pack"
+            },
+            {
+              "from_item_attr": "share_v",
+              "to_common_attr": "share_v_pack"
+            },
+            {
+              "from_item_attr": "audience_v",
+              "to_common_attr": "audience_v_pack"
+            },
+            {
+              "from_item_attr": "continuous_v",
+              "to_common_attr": "continuous_v_pack"
+            },
+            {
+              "from_item_attr": "staytime_v",
+              "to_common_attr": "staytime_v_pack"
+            },
+            {
+              "from_item_attr": "show_v",
+              "to_common_attr": "show_v_pack"
+            },
+            {
+              "from_item_attr": "comment_genre",
+              "to_common_attr": "comment_genre_list"
+            },
+            {
+              "from_item_attr": "risk_insult_tag",
+              "to_common_attr": "risk_insult_tag_list"
+            },
+            {
+              "from_item_attr": "risk_negative_tag",
+              "to_common_attr": "risk_negative_tag_list"
+            },
+            {
+              "from_item_attr": "risk_inactive_tag",
+              "to_common_attr": "risk_inactive_tag_list"
+            },
+            {
+              "from_item_attr": "mmu_category_tag",
+              "to_common_attr": "mmu_category_tag_list"
+            },
+            {
+              "from_item_attr": "mmu_emotion_tag",
+              "to_common_attr": "mmu_emotion_tag_list"
+            },
+            {
+              "from_item_attr": "like_pxtr_dis",
+              "to_common_attr": "like_pxtr_dis_list"
+            },
+            {
+              "from_item_attr": "reply_pxtr_dis",
+              "to_common_attr": "reply_pxtr_dis_list"
+            },
+            {
+              "from_item_attr": "expand_pxtr_dis",
+              "to_common_attr": "expand_pxtr_dis_list"
+            },
+            {
+              "from_item_attr": "continuous_expand_pxtr_dis",
+              "to_common_attr": "continuous_expand_pxtr_dis_list"
+            },
+            {
+              "from_item_attr": "copy_pxtr_dis",
+              "to_common_attr": "copy_pxtr_dis_list"
+            },
+            {
+              "from_item_attr": "share_pxtr_dis",
+              "to_common_attr": "share_pxtr_dis_list"
+            },
+            {
+              "from_item_attr": "audience_pxtr_dis",
+              "to_common_attr": "audience_pxtr_dis_list"
+            }
+          ],
+          "type_name": "CommonRecoItemAttrPackEnricher"
+        },
+        "parse_context_CA860B": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "raw_context_str"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "age_segment",
+              "device_id",
+              "gender",
+              "llsid",
+              "photo_author_id",
+              "photo_id",
+              "request_time",
+              "user_id"
+            ],
+            "$output_item_attrs": [
+              "audienceAction",
+              "audienceAction_first",
+              "audienceAction_second",
+              "audience_pxtr",
+              "author_id",
+              "comment_genre",
+              "comment_id",
+              "comment_stay_time",
+              "continuous_expand_pxtr",
+              "copyAction_first",
+              "copyAction_second",
+              "copy_pxtr",
+              "dislike_cnt",
+              "expandAction",
+              "expandAction_first",
+              "expand_pxtr",
+              "likeAction",
+              "likeAction_first",
+              "likeAction_second",
+              "like_cnt",
+              "like_pxtr",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "realshow_cnt",
+              "replyAction",
+              "replyAction_first",
+              "replyAction_second",
+              "reply_cnt",
+              "reply_pxtr",
+              "reportAction",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "shareAction_first",
+              "shareAction_second",
+              "share_pxtr",
+              "showAction",
+              "stayDurationMs",
+              "stayDurationMs_second",
+              "subShowCntAction"
+            ]
+          },
+          "extract_common_attrs": [
+            "user_id",
+            "device_id",
+            "photo_id",
+            "photo_author_id",
+            "gender",
+            "age_segment",
+            "llsid",
+            "request_time"
+          ],
+          "extract_item_attrs": [
+            "comment_id",
+            "author_id",
+            "like_cnt",
+            "reply_cnt",
+            "realshow_cnt",
+            "dislike_cnt",
+            "showAction",
+            "expandAction",
+            "replyAction",
+            "likeAction",
+            "audienceAction",
+            "reportAction",
+            "comment_genre",
+            "risk_insult_tag",
+            "risk_negative_tag",
+            "risk_inactive_tag",
+            "mmu_category_tag",
+            "mmu_emotion_tag",
+            "subShowCntAction",
+            "expandAction_first",
+            "likeAction_first",
+            "likeAction_second",
+            "replyAction_first",
+            "replyAction_second",
+            "copyAction_first",
+            "copyAction_second",
+            "shareAction_first",
+            "shareAction_second",
+            "audienceAction_first",
+            "audienceAction_second",
+            "stayDurationMs",
+            "stayDurationMs_second",
+            "comment_stay_time",
+            "mmu_entity_list",
+            "minute_diff",
+            "like_pxtr",
+            "reply_pxtr",
+            "expand_pxtr",
+            "continuous_expand_pxtr",
+            "copy_pxtr",
+            "share_pxtr",
+            "audience_pxtr"
+          ],
+          "extract_item_results": true,
+          "parse_from_attr": "raw_context_str",
+          "type_name": "CommonRecoParseContextRetriever"
+        },
+        "perflog_attr_value_2B18F7": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "expand_v_pack",
+              "final_seq_cnt",
+              "like_v_pack",
+              "mask_pack",
+              "reply_v_pack",
+              "retrieve_item",
+              "sample_minute_diff",
+              "sample_weight_pack",
+              "show_cnt"
+            ],
+            "$input_item_attrs": [
+              "audienceAction",
+              "calc_weight",
+              "expand",
+              "expandAction",
+              "expand_v",
+              "like",
+              "likeAction",
+              "like_v",
+              "reply",
+              "replyAction",
+              "reply_vsample_weight",
+              "reportAction",
+              "showAction"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "comment.listwise",
+          "common_attrs": [
+            "sample_minute_diff",
+            "retrieve_item",
+            "show_cnt",
+            "final_seq_cnt",
+            "sample_weight_pack",
+            "expand_v_pack",
+            "like_v_pack",
+            "reply_v_pack",
+            "mask_pack"
+          ],
+          "item_attrs": [
+            "showAction",
+            "expandAction",
+            "replyAction",
+            "likeAction",
+            "audienceAction",
+            "reportAction",
+            "expand",
+            "like",
+            "reply",
+            "expand_v",
+            "like_v",
+            "reply_vsample_weight",
+            "calc_weight"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "perflog_attr_value_AAFAFC": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "device_id",
+              "gender",
+              "llsid",
+              "photo_author_id",
+              "photo_id",
+              "request_time",
+              "user_id"
+            ],
+            "$input_item_attrs": [
+              "audienceAction",
+              "audienceAction_first",
+              "audienceAction_second",
+              "audience_pxtr",
+              "author_id",
+              "comment_genre",
+              "comment_id",
+              "comment_stay_time",
+              "continuous_expand_pxtr",
+              "copyAction_first",
+              "copyAction_second",
+              "copy_pxtr",
+              "dislike_cnt",
+              "expandAction",
+              "expandAction_first",
+              "expand_pxtr",
+              "likeAction",
+              "likeAction_first",
+              "likeAction_second",
+              "like_cnt",
+              "like_pxtr",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "realshow_cnt",
+              "replyAction",
+              "replyAction_first",
+              "replyAction_second",
+              "reply_cnt",
+              "reply_pxtr",
+              "reportAction",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "shareAction_first",
+              "shareAction_second",
+              "share_pxtr",
+              "showAction",
+              "stayDurationMs",
+              "stayDurationMs_second",
+              "subShowCntAction"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "comment.listwise",
+          "common_attrs": [
+            "user_id",
+            "device_id",
+            "photo_id",
+            "photo_author_id",
+            "gender",
+            "age_segment",
+            "llsid",
+            "request_time"
+          ],
+          "item_attrs": [
+            "comment_id",
+            "author_id",
+            "like_cnt",
+            "reply_cnt",
+            "realshow_cnt",
+            "dislike_cnt",
+            "showAction",
+            "expandAction",
+            "replyAction",
+            "likeAction",
+            "audienceAction",
+            "reportAction",
+            "comment_genre",
+            "risk_insult_tag",
+            "risk_negative_tag",
+            "risk_inactive_tag",
+            "mmu_category_tag",
+            "mmu_emotion_tag",
+            "subShowCntAction",
+            "expandAction_first",
+            "likeAction_first",
+            "likeAction_second",
+            "replyAction_first",
+            "replyAction_second",
+            "copyAction_first",
+            "copyAction_second",
+            "shareAction_first",
+            "shareAction_second",
+            "audienceAction_first",
+            "audienceAction_second",
+            "stayDurationMs",
+            "stayDurationMs_second",
+            "comment_stay_time",
+            "mmu_entity_list",
+            "minute_diff",
+            "like_pxtr",
+            "reply_pxtr",
+            "expand_pxtr",
+            "continuous_expand_pxtr",
+            "copy_pxtr",
+            "share_pxtr",
+            "audience_pxtr"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "perflog_attr_value_D6D657": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "show_item_cnt"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "comment.listwise",
+          "common_attrs": [
+            "show_item_cnt"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "return__28C561": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "_if_control_attr_1"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "skip": "{{_if_control_attr_1}}",
+          "status_code": 0,
+          "type_name": "CommonRecoExecutionStatusEnricher"
+        },
+        "send_to_mio_learner_16FC56": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "audience_v_pack",
+              "comment_common_signs",
+              "comment_common_slots",
+              "continuous_v_pack",
+              "copy_v_pack",
+              "expand_v_pack",
+              "like_v_pack",
+              "mask_pack",
+              "reply_v_pack",
+              "sample_weight_pack",
+              "share_v_pack",
+              "show_v_pack",
+              "staytime_v_pack",
+              "time_ms",
+              "user_hash",
+              "user_id"
+            ],
+            "$input_item_attrs": [
+              "audience_v_pack",
+              "comment_common_signs",
+              "comment_common_slots",
+              "continuous_v_pack",
+              "copy_v_pack",
+              "expand_v_pack",
+              "like_v",
+              "like_v_pack",
+              "mask_pack",
+              "reply_v_pack",
+              "sample_weight_pack",
+              "share_v_pack",
+              "show_v_pack",
+              "staytime_v_pack"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "attrs": [
+            "sample_weight_pack",
+            "expand_v_pack",
+            "like_v_pack",
+            "reply_v_pack",
+            "copy_v_pack",
+            "share_v_pack",
+            "audience_v_pack",
+            "continuous_v_pack",
+            "staytime_v_pack",
+            "show_v_pack",
+            "mask_pack"
+          ],
+          "label_attr": "like_v",
+          "lineid_attr": "user_id",
+          "signs_attrs": [
+            "comment_common_signs"
+          ],
+          "slots_attrs": [
+            "comment_common_slots"
+          ],
+          "time_ms_attr": "time_ms",
+          "type_name": "MioRecordChannelObserver",
+          "user_hash_attr": "user_hash"
+        },
+        "set_attr_default_value_6710DB": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "audienceAction",
+              "audienceAction_first",
+              "audienceAction_second",
+              "audience_pxtr",
+              "author_id",
+              "comment_genre",
+              "comment_id",
+              "comment_stay_time",
+              "continuous_expand_pxtr",
+              "copyAction_first",
+              "copyAction_second",
+              "copy_pxtr",
+              "dislike_cnt",
+              "expandAction",
+              "expandAction_first",
+              "expand_pxtr",
+              "likeAction",
+              "likeAction_first",
+              "likeAction_second",
+              "like_cnt",
+              "like_pxtr",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "mmu_entity_list",
+              "realshow_cnt",
+              "replyAction",
+              "replyAction_first",
+              "replyAction_second",
+              "reply_cnt",
+              "reply_pxtr",
+              "reportAction",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "shareAction_first",
+              "shareAction_second",
+              "share_pxtr",
+              "showAction",
+              "stayDurationMs",
+              "stayDurationMs_second",
+              "subShowCntAction"
+            ]
+          },
+          "item_attrs": [
+            {
+              "name": "comment_id",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "author_id",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "like_cnt",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "reply_cnt",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "realshow_cnt",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "dislike_cnt",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "showAction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "expandAction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "replyAction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "likeAction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "audienceAction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "reportAction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "comment_genre",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "risk_insult_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "risk_negative_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "risk_inactive_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "mmu_category_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "mmu_emotion_tag",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "subShowCntAction",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "expandAction_first",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "likeAction_first",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "likeAction_second",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "replyAction_first",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "replyAction_second",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "copyAction_first",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "copyAction_second",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "shareAction_first",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "shareAction_second",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "audienceAction_first",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "audienceAction_second",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "stayDurationMs",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "stayDurationMs_second",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "comment_stay_time",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "mmu_entity_list",
+              "type": "int_list",
+              "value": []
+            },
+            {
+              "name": "minute_diff",
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "name": "like_pxtr",
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "name": "reply_pxtr",
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "name": "expand_pxtr",
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "name": "continuous_expand_pxtr",
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "name": "copy_pxtr",
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "name": "share_pxtr",
+              "type": "double",
+              "value": 0.0
+            },
+            {
+              "name": "audience_pxtr",
+              "type": "double",
+              "value": 0.0
+            }
+          ],
+          "type_name": "CommonRecoAttrDefaultValueEnricher"
+        },
+        "truncate_6E7E43": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [
+              ""
+            ],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "size_limit": 20,
+          "type_name": "CommonRecoTruncateArranger"
+        },
+        "truncate_EA6E76": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [
+              ""
+            ],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "size_limit": 0,
+          "type_name": "CommonRecoTruncateArranger"
+        }
+      },
+      "type_name": "CommonRecoPipeline"
+    },
+    "pipeline_map": {
+      "extract_fea": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "enrich_attr_by_lua_7634C3",
+          "enrich_attr_by_lua_0F1112",
+          "count_reco_result_4A45F6",
+          "enrich_attr_by_lua_9F0CDF",
+          "pack_item_attr_B7C8BB",
+          "extract_kuiba_parameter_CD75FF"
+        ]
+      },
+      "pack_list": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "log_debug_info_FD7D31",
+          "perflog_attr_value_2B18F7",
+          "truncate_EA6E76",
+          "fake_retrieve_CFF7F5"
+        ]
+      },
+      "read_data": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "fetch_message_A5FE78",
+          "parse_context_CA860B",
+          "copy_item_meta_info_6E522F",
+          "set_attr_default_value_6710DB",
+          "perflog_attr_value_AAFAFC",
+          "log_debug_info_DA9637",
+          "count_reco_result_FC0C3F",
+          "_branch_controller_DE417B84",
+          "return__28C561",
+          "perflog_attr_value_D6D657",
+          "enrich_attr_by_lua_2AF6DB",
+          "enrich_attr_by_lua_77AD94",
+          "enrich_attr_by_lua_1DB2FE",
+          "enrich_attr_by_lua_484291",
+          "enrich_attr_by_lua_7EF2D8",
+          "truncate_6E7E43"
+        ]
+      },
+      "send_mio": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "enrich_attr_by_lua_AF7E6F",
+          "enrich_attr_by_lua_6F04E0",
+          "send_to_mio_learner_16FC56"
+        ]
+      }
+    }
+  },
+  "runner_pipeline_group": {
+    "default_name": {
+      "core_num_thread_ratio": 0.0,
+      "pipeline": [
+        "read_data",
+        "extract_fea",
+        "pack_list",
+        "send_mio"
+      ],
+      "thread_num": -1
+    }
+  },
+  "service_identifier": "comment_listwise"
+}

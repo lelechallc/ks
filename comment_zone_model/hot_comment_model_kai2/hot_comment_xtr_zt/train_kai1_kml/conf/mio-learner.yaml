@@ -1,0 +1,61 @@
+mio : conf/mio.yaml
+kai_conf: ./kai_conf.json
+
+minibatch_size : 8192
+
+create_clk_prob : 1
+create_nonclk_prob : 1
+
+select_prob_slots : 
+    slots : 1 2 3 10 11 12 8 63 64 65 66 86 154 155
+    create_clk_prob : 0.2
+    create_nonclk_prob : 0.2
+    delete_threshold : 8
+    base_threshold : 150
+    delete_after_unseen_days : 7
+
+photoid_slots : 11 32 39 63 65 88 89 90 91 92 96 94 6 78 79 97
+
+delete_threshold : 2
+max_delete_threshold : 50
+delete_after_unseen_days : 7
+max_features : 10000000000
+
+eval_runner :
+    pipeline : conf/mio_reader.json
+
+uniform_runner :
+    sparse_lr: 0.05
+    sparse_param:
+        grad_clip: 5
+    dense_lr: 0.001
+    dense_param:
+        grad_clip: 5
+
+    base_save_threshold : 100
+    delta_save_threshold : 1.5
+
+    message_queue_name : content_hot_comment_zt08
+    is_write_mq : false
+
+    global_shuffle: true
+    local_shuffle_size: 100000
+
+    pipeline : conf/mio_reader.json
+    begin_time: "2023-06-12 00:00:00"
+    save_model_interval_hour: 24
+
+    read_thread_num : 96
+
+    pass_size : 500000
+    channel_capacity : 200000
+    keep_checkpoint_size : 2
+    model_path : "viewfs:///home/reco_wl/mpi/zhoutong08/comment04"
+
+cvm_plugin :
+    decay_rate : 0.90
+
+dnn_plugin : ./conf/dnn-plugin.yaml
+
+kai_ps:
+    fp16_storage: true

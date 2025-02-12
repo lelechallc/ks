@@ -1,0 +1,8 @@
+--log_dir=../log/
+
+# 绝大多数 flag 可以用默认值, 这里只写强烈建议不要用默认值的 flag
+# 更多 flag 含义请参考项目 git wiki
+
+# 增强内存利用率
+--block_reuse_strategy=true
+

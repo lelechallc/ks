@@ -1,0 +1,201 @@
+{
+  "_CONFIG_VERSION": "824f30af9a197a0e489b7382de2200d9_local",
+  "_DRAGONFLY_CREATE_TIME": "2024-07-01 16:37:49",
+  "_DRAGONFLY_VERSION": "0.8.0",
+  "kess_config": {},
+  "pipeline_manager_config": {
+    "base_pipeline": {
+      "processor": {
+        "convert_csv_to_tf_sequence_example_B90413": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "csv_sample_data"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "tf_sequence_example"
+            ],
+            "$output_item_attrs": []
+          },
+          "column_separator": "\t",
+          "from_extra_var": "csv_sample_data",
+          "item_attrs": [
+            {
+              "column_index": 0,
+              "column_name": "comment_id",
+              "type": "int"
+            },
+            {
+              "column_index": 1,
+              "column_name": "vv",
+              "type": "int"
+            }
+          ],
+          "item_separator": ",",
+          "list_separator": " ",
+          "save_result_to": "tf_sequence_example",
+          "type_name": "OfflineCsvToTfSequenceExampleEnricher"
+        },
+        "export_attr_to_kafka_F32EC5": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "cmt_emb",
+              "comment_id"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "item_attrs": [
+            "comment_id",
+            "cmt_emb"
+          ],
+          "kafka_topic": "comment_emb",
+          "single_json": false,
+          "type_name": "CommonRecoAttrExportObserver"
+        },
+        "fetch_message_111759": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "csv_sample_data"
+            ],
+            "$output_item_attrs": []
+          },
+          "group_id": "001",
+          "hdfs_format": "raw_text",
+          "hdfs_path": "/home/reco_algorithm/dw/reco_algorithm.db/tmp_comment_id_high_vv/p_date=2024070108",
+          "output_attr": "csv_sample_data",
+          "type_name": "OfflineMessageFetchEnricher"
+        },
+        "filter_by_attr_2309A8": {
+          "$metadata": {
+            "$downstream_item_attrs": [
+              "cmt_emb_vector"
+            ],
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "cmt_emb_vector"
+            ],
+            "$modify_item_tables": [
+              ""
+            ],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "attr_name": "cmt_emb_vector",
+          "compare_to": 0,
+          "remove_if": "==",
+          "remove_if_attr_missing": true,
+          "type_name": "CommonRecoAttrFilterArranger"
+        },
+        "get_remote_embedding_lite_16C126": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "comment_id"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "cmt_emb_vector"
+            ]
+          },
+          "client_side_shard": true,
+          "downstream_processor": "filter_by_attr_2309A8",
+          "id_converter": {
+            "type_name": "mioEmbeddingIdConverter"
+          },
+          "input_attr_name": "comment_id",
+          "kess_service": "grpc_HotCommentXtrSevenTargetsEmb",
+          "output_attr_name": "cmt_emb_vector",
+          "query_source_type": "item_attr",
+          "shard_num": 1,
+          "size": 64,
+          "slot": 201,
+          "timeout_ms": 50,
+          "type_name": "CommonRecoRemoteEmbeddingAttrLiteEnricher"
+        },
+        "item_list_to_string_9710A2": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "cmt_emb_vector"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "cmt_emb"
+            ]
+          },
+          "input_item_attr": "cmt_emb_vector",
+          "output_item_attr": "cmt_emb",
+          "type_name": "MerchantItemListToStringEnricher"
+        },
+        "log_debug_info_523A0A": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "append_to_file": true,
+          "for_debug_request_only": false,
+          "print_all_common_attrs": true,
+          "print_all_item_attrs": true,
+          "respect_sample_logging": true,
+          "to": "file",
+          "to_file_folder": "/data/web_server/project/krp_common_leaf_runner/log/",
+          "to_file_name": "wht_log",
+          "type_name": "CommonRecoDebugInfoObserver"
+        },
+        "retrieve_from_tf_sequence_example_22B8B0": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "tf_sequence_example"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "from_extra_var": "tf_sequence_example",
+          "item_key_attr": "comment_id",
+          "reason": 111,
+          "type_name": "OfflineTensorflowSequenceExampleRetriever"
+        }
+      },
+      "type_name": "CommonRecoPipeline"
+    },
+    "pipeline_map": {
+      "read_data": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "fetch_message_111759",
+          "convert_csv_to_tf_sequence_example_B90413",
+          "retrieve_from_tf_sequence_example_22B8B0",
+          "get_remote_embedding_lite_16C126",
+          "filter_by_attr_2309A8",
+          "item_list_to_string_9710A2",
+          "log_debug_info_523A0A",
+          "export_attr_to_kafka_F32EC5"
+        ]
+      }
+    }
+  },
+  "runner_pipeline_group": {
+    "default_name": {
+      "core_num_thread_ratio": 0.0,
+      "pipeline": [
+        "read_data"
+      ],
+      "thread_num": -1
+    }
+  },
+  "service_identifier": "comment_model"
+}

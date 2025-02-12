@@ -1,0 +1,1198 @@
+{
+  "_CONFIG_VERSION": "300feddce08c26df877f648dcef24268_local",
+  "_DRAGONFLY_CREATE_TIME": "2024-10-16 20:36:36",
+  "_DRAGONFLY_VERSION": "0.8.2",
+  "kess_config": {},
+  "pipeline_manager_config": {
+    "base_pipeline": {
+      "processor": {
+        "_branch_controller_A93BFE5B": {
+          "$branch_start": "_branch_controller_A93BFE5B",
+          "$code_info": "[if] A93BFE5B cofea_reader_opt.py in <module>(): .if_(\"retrieve_num <= 0\")",
+          "$metadata": {
+            "$input_common_attrs": [
+              "retrieve_num"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "_if_control_attr_2"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "_if_control_attr_2"
+          ],
+          "for_branch_control": true,
+          "function_for_common": "evaluate",
+          "import_common_attr": [
+            "retrieve_num"
+          ],
+          "lua_script": "function evaluate() if (retrieve_num <= 0) then return false else return true end end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "_branch_controller_C954FEDA": {
+          "$branch_start": "_branch_controller_C954FEDA",
+          "$code_info": "[if] C954FEDA cofea_reader_opt.py in <module>(): .if_(\"#(comment_id_list_common_retrieve or {}) == 0\")",
+          "$metadata": {
+            "$input_common_attrs": [
+              "comment_id_list_common_retrieve"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "_if_control_attr_1"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "_if_control_attr_1"
+          ],
+          "for_branch_control": true,
+          "function_for_common": "evaluate",
+          "import_common_attr": [
+            "comment_id_list_common_retrieve"
+          ],
+          "lua_script": "function evaluate() if (#(comment_id_list_common_retrieve or {}) == 0) then return false else return true end end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "count_reco_result_667B8B": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "retrieve_num"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "retrieve_num",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "count_reco_result_7BD7E7": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "send_sample_cnt"
+            ],
+            "$output_item_attrs": []
+          },
+          "save_result_size_to_common_attr": "send_sample_cnt",
+          "type_name": "CommonRecoCountRecoResultEnricher"
+        },
+        "dispatch_common_attr_555F6A": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "audienceAction_first_list_common_retrieve",
+              "author_id_list_common_retrieve",
+              "comment_genre_list_common_retrieve",
+              "comment_id_list_common_retrieve",
+              "content_length_list_common_retrieve",
+              "copyAction_first_list_common_retrieve",
+              "dislike_cnt_list_common_retrieve",
+              "expandAction_first_list_common_retrieve",
+              "expandAction_second_list_common_retrieve",
+              "likeAction_first_list_common_retrieve",
+              "like_cnt_list_common_retrieve",
+              "minute_diff_list_common_retrieve",
+              "mmu_category_tag_list_common_retrieve",
+              "mmu_emotion_tag_list_common_retrieve",
+              "replyAction_first_list_common_retrieve",
+              "reply_cnt_list_common_retrieve",
+              "risk_inactive_tag_list_common_retrieve",
+              "risk_insult_tag_list_common_retrieve",
+              "risk_negative_tag_list_common_retrieve",
+              "shareAction_first_list_common_retrieve"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "audienceAction_first",
+              "author_id",
+              "comment_genre",
+              "comment_id",
+              "content_length",
+              "copyAction_first",
+              "dislike_cnt",
+              "expandAction_first",
+              "expandAction_second",
+              "likeAction_first",
+              "like_cnt",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "replyAction_first",
+              "reply_cnt",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag",
+              "shareAction_first"
+            ]
+          },
+          "dispatch_config": [
+            {
+              "from_common_attr": "comment_id_list_common_retrieve",
+              "to_item_attr": "comment_id"
+            },
+            {
+              "from_common_attr": "author_id_list_common_retrieve",
+              "to_item_attr": "author_id"
+            },
+            {
+              "from_common_attr": "like_cnt_list_common_retrieve",
+              "to_item_attr": "like_cnt"
+            },
+            {
+              "from_common_attr": "reply_cnt_list_common_retrieve",
+              "to_item_attr": "reply_cnt"
+            },
+            {
+              "from_common_attr": "minute_diff_list_common_retrieve",
+              "to_item_attr": "minute_diff"
+            },
+            {
+              "from_common_attr": "dislike_cnt_list_common_retrieve",
+              "to_item_attr": "dislike_cnt"
+            },
+            {
+              "from_common_attr": "comment_genre_list_common_retrieve",
+              "to_item_attr": "comment_genre"
+            },
+            {
+              "from_common_attr": "content_length_list_common_retrieve",
+              "to_item_attr": "content_length"
+            },
+            {
+              "from_common_attr": "risk_insult_tag_list_common_retrieve",
+              "to_item_attr": "risk_insult_tag"
+            },
+            {
+              "from_common_attr": "risk_negative_tag_list_common_retrieve",
+              "to_item_attr": "risk_negative_tag"
+            },
+            {
+              "from_common_attr": "risk_inactive_tag_list_common_retrieve",
+              "to_item_attr": "risk_inactive_tag"
+            },
+            {
+              "from_common_attr": "mmu_category_tag_list_common_retrieve",
+              "to_item_attr": "mmu_category_tag"
+            },
+            {
+              "from_common_attr": "mmu_emotion_tag_list_common_retrieve",
+              "to_item_attr": "mmu_emotion_tag"
+            },
+            {
+              "from_common_attr": "expandAction_first_list_common_retrieve",
+              "to_item_attr": "expandAction_first"
+            },
+            {
+              "from_common_attr": "replyAction_first_list_common_retrieve",
+              "to_item_attr": "replyAction_first"
+            },
+            {
+              "from_common_attr": "likeAction_first_list_common_retrieve",
+              "to_item_attr": "likeAction_first"
+            },
+            {
+              "from_common_attr": "audienceAction_first_list_common_retrieve",
+              "to_item_attr": "audienceAction_first"
+            },
+            {
+              "from_common_attr": "expandAction_second_list_common_retrieve",
+              "to_item_attr": "expandAction_second"
+            },
+            {
+              "from_common_attr": "copyAction_first_list_common_retrieve",
+              "to_item_attr": "copyAction_first"
+            },
+            {
+              "from_common_attr": "shareAction_first_list_common_retrieve",
+              "to_item_attr": "shareAction_first"
+            }
+          ],
+          "type_name": "CommonRecoCommonAttrDispatchEnricher"
+        },
+        "enrich_attr_by_lua_AE59F4": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "device_id",
+              "photo_id",
+              "user_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "user_photo_hash"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "user_photo_hash"
+          ],
+          "function_for_common": "get_user_photo_hash",
+          "import_common_attr": [
+            "user_id",
+            "device_id",
+            "photo_id"
+          ],
+          "lua_script": "function get_user_photo_hash()\n                if device_id == nil or device_id == \"\" then\n                    local up_hash_str = tostring(user_id) .. tostring(photo_id)\n                    return util.CityHash64(up_hash_str)\n                end\n                local dp_hash_str = tostring(device_id) .. tostring(photo_id)\n                return util.CityHash64(dp_hash_str)\n            end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_C54E30": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "request_time"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "time_ms"
+            ],
+            "$output_item_attrs": []
+          },
+          "export_common_attr": [
+            "time_ms"
+          ],
+          "function_for_common": "cal",
+          "import_common_attr": [
+            "request_time"
+          ],
+          "lua_script": "function cal()\n                return request_time // 1000\n            end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_attr_by_lua_EA8B7F": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [
+              "audienceAction_first",
+              "copyAction_first",
+              "expandAction_first",
+              "expandAction_second",
+              "likeAction_first",
+              "replyAction_first",
+              "shareAction_first"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "audienceAction_v",
+              "copyAction_v",
+              "expandActionSecond_v",
+              "expandAction_v",
+              "likeAction_v",
+              "replyAction_v",
+              "shareAction_v"
+            ]
+          },
+          "export_item_attr": [
+            "expandAction_v",
+            "likeAction_v",
+            "replyAction_v",
+            "audienceAction_v",
+            "copyAction_v",
+            "shareAction_v",
+            "expandActionSecond_v"
+          ],
+          "function_for_item": "trans",
+          "import_item_attr": [
+            "expandAction_first",
+            "likeAction_first",
+            "replyAction_first",
+            "audienceAction_first",
+            "copyAction_first",
+            "shareAction_first",
+            "expandAction_second"
+          ],
+          "lua_script": "function trans()\n          local expandAction_v = 0\n          local likeAction_v = 0\n          local replyAction_v = 0\n          local audienceAction_v = 0\n          local copyAction_v = 0\n          local shareAction_v = 0\n          local expandActionSecond_v = 0\n\n          if expandAction_first ~= nil and expandAction_first > 0 then\n            expandAction_v = expandAction_first\n          end\n          if likeAction_first ~= nil and likeAction_first > 0 then\n            likeAction_v = 1\n          end\n          if replyAction_first ~= nil and replyAction_first > 0 then\n            replyAction_v = 1\n          end\n          if audienceAction_first ~= nil and audienceAction_first > 0 then\n            audienceAction_v = 1\n          end\n          if copyAction_first ~= nil and copyAction_first > 0 then\n            copyAction_v = 1\n          end\n          if shareAction_first ~= nil and shareAction_first > 0 then\n            shareAction_v = 1\n          end\n          if expandAction_second ~= nil and expandAction_second > 0 then\n            expandActionSecond_v = 1\n          end\n          return expandAction_v, likeAction_v, replyAction_v, audienceAction_v, copyAction_v, shareAction_v, expandActionSecond_v\n        end",
+          "type_name": "CommonRecoLuaAttrEnricher"
+        },
+        "enrich_with_protobuf_65474C": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "raw_sample_package"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "age_segment",
+              "audienceAction_first_list_common_retrieve",
+              "author_id_list_common_retrieve",
+              "comment_genre_list_common_retrieve",
+              "comment_id_list_common_retrieve",
+              "content_length_list_common_retrieve",
+              "copyAction_first_list_common_retrieve",
+              "device_id",
+              "dislike_cnt_list_common_retrieve",
+              "expandAction_first_list_common_retrieve",
+              "expandAction_second_list_common_retrieve",
+              "gender",
+              "likeAction_first_list_common_retrieve",
+              "like_cnt_list_common_retrieve",
+              "minute_diff_list_common_retrieve",
+              "mmu_category_tag_list_common_retrieve",
+              "mmu_emotion_tag_list_common_retrieve",
+              "mod",
+              "page_type_str",
+              "photo_author_id",
+              "photo_id",
+              "replyAction_first_list_common_retrieve",
+              "reply_cnt_list_common_retrieve",
+              "request_time",
+              "risk_inactive_tag_list_common_retrieve",
+              "risk_insult_tag_list_common_retrieve",
+              "risk_negative_tag_list_common_retrieve",
+              "shareAction_first_list_common_retrieve",
+              "user_id"
+            ],
+            "$output_item_attrs": []
+          },
+          "attrs": [
+            {
+              "name": "user_id",
+              "path": "common_attr",
+              "sample_attr_name": "user_id"
+            },
+            {
+              "name": "device_id",
+              "path": "common_attr",
+              "sample_attr_name": "device_id"
+            },
+            {
+              "name": "photo_id",
+              "path": "common_attr",
+              "sample_attr_name": "photo_id"
+            },
+            {
+              "name": "photo_author_id",
+              "path": "common_attr",
+              "sample_attr_name": "photo_author_id"
+            },
+            {
+              "name": "gender",
+              "path": "common_attr",
+              "sample_attr_name": "gender"
+            },
+            {
+              "name": "age_segment",
+              "path": "common_attr",
+              "sample_attr_name": "age_segment"
+            },
+            {
+              "name": "mod",
+              "path": "common_attr",
+              "sample_attr_name": "mod"
+            },
+            {
+              "name": "page_type_str",
+              "path": "common_attr",
+              "sample_attr_name": "page_type_str"
+            },
+            {
+              "name": "comment_id_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "comment_id"
+            },
+            {
+              "name": "author_id_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "author_id"
+            },
+            {
+              "name": "like_cnt_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "like_cnt"
+            },
+            {
+              "name": "reply_cnt_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "reply_cnt"
+            },
+            {
+              "name": "minute_diff_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "minute_diff"
+            },
+            {
+              "name": "dislike_cnt_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "dislike_cnt"
+            },
+            {
+              "name": "comment_genre_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "comment_genre"
+            },
+            {
+              "name": "content_length_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "content_length"
+            },
+            {
+              "name": "risk_insult_tag_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "risk_insult_tag"
+            },
+            {
+              "name": "risk_negative_tag_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "risk_negative_tag"
+            },
+            {
+              "name": "risk_inactive_tag_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "risk_inactive_tag"
+            },
+            {
+              "name": "mmu_category_tag_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "mmu_category_tag"
+            },
+            {
+              "name": "mmu_emotion_tag_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "mmu_emotion_tag"
+            },
+            {
+              "name": "expandAction_first_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "expandAction_first"
+            },
+            {
+              "name": "replyAction_first_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "replyAction_first"
+            },
+            {
+              "name": "likeAction_first_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "likeAction_first"
+            },
+            {
+              "name": "audienceAction_first_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "audienceAction_first"
+            },
+            {
+              "name": "expandAction_second_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "expandAction_second"
+            },
+            {
+              "name": "copyAction_first_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "copyAction_first"
+            },
+            {
+              "name": "shareAction_first_list_common_retrieve",
+              "path": "sample.attr",
+              "sample_attr_name": "shareAction_first"
+            },
+            {
+              "name": "request_time",
+              "path": "timestamp"
+            }
+          ],
+          "from_extra_var": "raw_sample_package",
+          "type_name": "CommonRecoProtobufAttrEnricher"
+        },
+        "extract_kuiba_parameter_0F1BB0": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "has_pic",
+              "is_ai_kwai_wonderful_rely",
+              "is_ai_play",
+              "is_comment_contain_at",
+              "is_text_emoji",
+              "is_text_pic",
+              "quality_score",
+              "quality_v2_score",
+              "related_score"
+            ],
+            "$input_item_attrs": [
+              "author_id",
+              "comment_genre",
+              "comment_id",
+              "content_length",
+              "dislike_cnt",
+              "has_pic",
+              "is_ai_kwai_wonderful_rely",
+              "is_ai_play",
+              "is_comment_contain_at",
+              "is_text_emoji",
+              "is_text_pic",
+              "like_cnt",
+              "minute_diff",
+              "mmu_category_tag",
+              "mmu_emotion_tag",
+              "quality_score",
+              "quality_v2_score",
+              "related_score",
+              "reply_cnt",
+              "risk_inactive_tag",
+              "risk_insult_tag",
+              "risk_negative_tag"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": [
+              "comment_item_signs",
+              "comment_item_slots"
+            ]
+          },
+          "config": {
+            "author_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "author_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 202,
+                  "mio_slot_key_type": 202
+                }
+              ]
+            },
+            "comment_genre": {
+              "attrs": [
+                {
+                  "attr": [
+                    "comment_genre"
+                  ],
+                  "converter": "id",
+                  "key_type": 213,
+                  "mio_slot_key_type": 213
+                }
+              ]
+            },
+            "comment_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "comment_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 201,
+                  "mio_slot_key_type": 201
+                }
+              ]
+            },
+            "content_length": {
+              "attrs": [
+                {
+                  "attr": [
+                    "content_length"
+                  ],
+                  "converter": "id",
+                  "key_type": 220,
+                  "mio_slot_key_type": 220
+                }
+              ]
+            },
+            "dislike_cnt": {
+              "attrs": [
+                {
+                  "attr": [
+                    "dislike_cnt"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "3,0,100000,1,0",
+                  "key_type": 209,
+                  "mio_slot_key_type": 209
+                }
+              ]
+            },
+            "has_pic": {
+              "attrs": [
+                {
+                  "attr": [
+                    "has_pic"
+                  ],
+                  "converter": "id",
+                  "key_type": 237,
+                  "mio_slot_key_type": 237
+                }
+              ]
+            },
+            "is_ai_kwai_wonderful_rely": {
+              "attrs": [
+                {
+                  "attr": [
+                    "is_ai_kwai_wonderful_rely"
+                  ],
+                  "converter": "id",
+                  "key_type": 236,
+                  "mio_slot_key_type": 236
+                }
+              ]
+            },
+            "is_ai_play": {
+              "attrs": [
+                {
+                  "attr": [
+                    "is_ai_play"
+                  ],
+                  "converter": "id",
+                  "key_type": 233,
+                  "mio_slot_key_type": 233
+                }
+              ]
+            },
+            "is_comment_contain_at": {
+              "attrs": [
+                {
+                  "attr": [
+                    "is_comment_contain_at"
+                  ],
+                  "converter": "id",
+                  "key_type": 234,
+                  "mio_slot_key_type": 234
+                }
+              ]
+            },
+            "is_text_emoji": {
+              "attrs": [
+                {
+                  "attr": [
+                    "is_text_emoji"
+                  ],
+                  "converter": "id",
+                  "key_type": 235,
+                  "mio_slot_key_type": 235
+                }
+              ]
+            },
+            "is_text_pic": {
+              "attrs": [
+                {
+                  "attr": [
+                    "is_text_pic"
+                  ],
+                  "converter": "id",
+                  "key_type": 238,
+                  "mio_slot_key_type": 238
+                }
+              ]
+            },
+            "like_cnt": {
+              "attrs": [
+                {
+                  "attr": [
+                    "like_cnt"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "5,0,100000,1,0",
+                  "key_type": 203,
+                  "mio_slot_key_type": 203
+                }
+              ]
+            },
+            "minute_diff": {
+              "attrs": [
+                {
+                  "attr": [
+                    "minute_diff"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "36,0,336,1,0",
+                  "key_type": 205,
+                  "mio_slot_key_type": 205
+                }
+              ]
+            },
+            "mmu_category_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "mmu_category_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 217,
+                  "mio_slot_key_type": 217
+                }
+              ]
+            },
+            "mmu_emotion_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "mmu_emotion_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 218,
+                  "mio_slot_key_type": 218
+                }
+              ]
+            },
+            "quality_score": {
+              "attrs": [
+                {
+                  "attr": [
+                    "quality_score"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "0.001,0,1000,1,0",
+                  "key_type": 230,
+                  "mio_slot_key_type": 230
+                }
+              ]
+            },
+            "quality_v2_score": {
+              "attrs": [
+                {
+                  "attr": [
+                    "quality_v2_score"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "0.001,0,1000,1,0",
+                  "key_type": 231,
+                  "mio_slot_key_type": 231
+                }
+              ]
+            },
+            "related_score": {
+              "attrs": [
+                {
+                  "attr": [
+                    "related_score"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "0.001,0,1000,1,0",
+                  "key_type": 232,
+                  "mio_slot_key_type": 232
+                }
+              ]
+            },
+            "reply_cnt": {
+              "attrs": [
+                {
+                  "attr": [
+                    "reply_cnt"
+                  ],
+                  "converter": "discrete",
+                  "converter_args": "5,0,100000,1,0",
+                  "key_type": 204,
+                  "mio_slot_key_type": 204
+                }
+              ]
+            },
+            "risk_inactive_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_inactive_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 216,
+                  "mio_slot_key_type": 216
+                }
+              ]
+            },
+            "risk_insult_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_insult_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 214,
+                  "mio_slot_key_type": 214
+                }
+              ]
+            },
+            "risk_negative_tag": {
+              "attrs": [
+                {
+                  "attr": [
+                    "risk_negative_tag"
+                  ],
+                  "converter": "id",
+                  "key_type": 215,
+                  "mio_slot_key_type": 215
+                }
+              ]
+            }
+          },
+          "is_common_attr": false,
+          "parameters_output": "comment_item_signs",
+          "slots_output": "comment_item_slots",
+          "type_name": "KuibaParameterAttrEnricher"
+        },
+        "extract_kuiba_parameter_1B603C": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "age_segment",
+              "city_name",
+              "device_id",
+              "gender",
+              "is_political",
+              "mod",
+              "page_type_str",
+              "photo_author_id",
+              "photo_id",
+              "product",
+              "user_id"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "comment_common_signs",
+              "comment_common_slots"
+            ],
+            "$output_item_attrs": []
+          },
+          "config": {
+            "age_segment": {
+              "attrs": [
+                {
+                  "attr": [
+                    "age_segment"
+                  ],
+                  "converter": "id",
+                  "key_type": 109,
+                  "mio_slot_key_type": 109
+                }
+              ]
+            },
+            "city_name": {
+              "attrs": [
+                {
+                  "attr": [
+                    "city_name"
+                  ],
+                  "converter": "id",
+                  "key_type": 111,
+                  "mio_slot_key_type": 111
+                }
+              ]
+            },
+            "device_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "device_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 106,
+                  "mio_slot_key_type": 106
+                }
+              ]
+            },
+            "gender": {
+              "attrs": [
+                {
+                  "attr": [
+                    "gender"
+                  ],
+                  "converter": "id",
+                  "key_type": 110,
+                  "mio_slot_key_type": 110
+                }
+              ]
+            },
+            "is_political": {
+              "attrs": [
+                {
+                  "attr": [
+                    "is_political"
+                  ],
+                  "converter": "id",
+                  "key_type": 113,
+                  "mio_slot_key_type": 113
+                }
+              ]
+            },
+            "mod": {
+              "attrs": [
+                {
+                  "attr": [
+                    "mod"
+                  ],
+                  "converter": "id",
+                  "key_type": 112,
+                  "mio_slot_key_type": 112
+                }
+              ]
+            },
+            "page_type_str": {
+              "attrs": [
+                {
+                  "attr": [
+                    "page_type_str"
+                  ],
+                  "converter": "id",
+                  "key_type": 108,
+                  "mio_slot_key_type": 108
+                }
+              ]
+            },
+            "photo_author_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "photo_author_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 104,
+                  "mio_slot_key_type": 104
+                }
+              ]
+            },
+            "photo_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "photo_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 103,
+                  "mio_slot_key_type": 103
+                }
+              ]
+            },
+            "product": {
+              "attrs": [
+                {
+                  "attr": [
+                    "product"
+                  ],
+                  "converter": "id",
+                  "key_type": 107,
+                  "mio_slot_key_type": 107
+                }
+              ]
+            },
+            "user_id": {
+              "attrs": [
+                {
+                  "attr": [
+                    "user_id"
+                  ],
+                  "converter": "id",
+                  "key_type": 105,
+                  "mio_slot_key_type": 105
+                }
+              ]
+            }
+          },
+          "is_common_attr": true,
+          "parameters_output": "comment_common_signs",
+          "slots_output": "comment_common_slots",
+          "type_name": "KuibaParameterAttrEnricher"
+        },
+        "fetch_message_37C7B1": {
+          "$metadata": {
+            "$input_common_attrs": [],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "raw_sample_package_str"
+            ],
+            "$output_item_attrs": []
+          },
+          "group_id": "hot_comment_xtr",
+          "kafka_topic": "reco_hot_comment_join_listwise_sample",
+          "output_attr": "raw_sample_package_str",
+          "type_name": "OfflineMessageFetchEnricher"
+        },
+        "parse_protobuf_from_string_E6CCD4": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "raw_sample_package_str"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [
+              "raw_sample_package"
+            ],
+            "$output_item_attrs": []
+          },
+          "class_name": "kuiba.RawSamplePackage",
+          "input_attr": "raw_sample_package_str",
+          "output_attr": "raw_sample_package",
+          "type_name": "CommonRecoProtobufParseAttrEnricher"
+        },
+        "perflog_attr_value_EC0D7A": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "send_sample_cnt"
+            ],
+            "$input_item_attrs": [
+              "expandAction_v",
+              "likeAction_v",
+              "replyAction_v"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "check_point": "send.mio",
+          "common_attrs": [
+            "send_sample_cnt"
+          ],
+          "item_attrs": [
+            "expandAction_v",
+            "likeAction_v",
+            "replyAction_v"
+          ],
+          "type_name": "CommonRecoAttrValuePerflogObserver"
+        },
+        "retrieve_by_common_attr_F6F1FA": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "comment_id_list_common_retrieve"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "attrs": [
+            {
+              "name": "comment_id_list_common_retrieve",
+              "reason": 999
+            }
+          ],
+          "type_name": "CommonRecoCommonAttrRetriever"
+        },
+        "return__28C561": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "_if_control_attr_1"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "skip": "{{_if_control_attr_1}}",
+          "status_code": 0,
+          "type_name": "CommonRecoExecutionStatusEnricher"
+        },
+        "return__6A0259": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "_if_control_attr_2"
+            ],
+            "$input_item_attrs": [],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "skip": "{{_if_control_attr_2}}",
+          "status_code": 0,
+          "type_name": "CommonRecoExecutionStatusEnricher"
+        },
+        "send_to_mio_learner_D125A4": {
+          "$metadata": {
+            "$input_common_attrs": [
+              "audienceAction_v",
+              "comment_common_signs",
+              "comment_common_slots",
+              "comment_item_signs",
+              "comment_item_slots",
+              "copyAction_v",
+              "expandActionSecond_v",
+              "expandAction_v",
+              "likeAction_v",
+              "replyAction_v",
+              "shareAction_v",
+              "time_ms",
+              "user_id",
+              "user_photo_hash"
+            ],
+            "$input_item_attrs": [
+              "audienceAction_v",
+              "comment_common_signs",
+              "comment_common_slots",
+              "comment_item_signs",
+              "comment_item_slots",
+              "copyAction_v",
+              "expandActionSecond_v",
+              "expandAction_v",
+              "likeAction_v",
+              "replyAction_v",
+              "shareAction_v"
+            ],
+            "$modify_item_tables": [],
+            "$output_common_attrs": [],
+            "$output_item_attrs": []
+          },
+          "attrs": [
+            "expandAction_v",
+            "likeAction_v",
+            "replyAction_v",
+            "audienceAction_v",
+            "copyAction_v",
+            "shareAction_v",
+            "expandActionSecond_v"
+          ],
+          "label_attr": "likeAction_v",
+          "lineid_attr": "user_id",
+          "signs_attrs": [
+            "comment_common_signs",
+            "comment_item_signs"
+          ],
+          "slots_attrs": [
+            "comment_common_slots",
+            "comment_item_slots"
+          ],
+          "time_ms_attr": "time_ms",
+          "type_name": "MioRecordChannelObserver",
+          "user_hash_attr": "user_photo_hash"
+        }
+      },
+      "type_name": "CommonRecoPipeline"
+    },
+    "pipeline_map": {
+      "gen_feature": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "extract_kuiba_parameter_1B603C",
+          "extract_kuiba_parameter_0F1BB0",
+          "enrich_attr_by_lua_EA8B7F",
+          "enrich_attr_by_lua_AE59F4"
+        ]
+      },
+      "read_data": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "fetch_message_37C7B1",
+          "parse_protobuf_from_string_E6CCD4",
+          "enrich_with_protobuf_65474C",
+          "enrich_attr_by_lua_C54E30",
+          "_branch_controller_C954FEDA",
+          "return__28C561",
+          "retrieve_by_common_attr_F6F1FA",
+          "dispatch_common_attr_555F6A",
+          "count_reco_result_667B8B",
+          "_branch_controller_A93BFE5B",
+          "return__6A0259"
+        ]
+      },
+      "send_mio": {
+        "__PARENT": "base_pipeline",
+        "pipeline": [
+          "count_reco_result_7BD7E7",
+          "perflog_attr_value_EC0D7A",
+          "send_to_mio_learner_D125A4"
+        ]
+      }
+    }
+  },
+  "runner_pipeline_group": {
+    "default_name": {
+      "core_num_thread_ratio": 0.0,
+      "pipeline": [
+        "read_data",
+        "gen_feature",
+        "send_mio"
+      ],
+      "thread_num": -1
+    }
+  },
+  "service_identifier": "comment_profile"
+}
