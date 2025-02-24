@@ -1,0 +1,111 @@
+# USER
+# user id slot = 38
+class = ExtractSignUserId
+
+# slot = 34
+class = ExtractSignUserDeviceId
+
+# slot = 174 + 16 = 190
+class = ExtractSignUserOrDeviceId
+
+# user exp rate slot = 35
+class = ExtractSignUserExpRate
+
+# user gender slot = 184
+class = ExtractSignUserAllGender
+
+# 用户applist (ios and andrid) 单边特征，slot = 173 + 16 = 189
+class = ExtractSignUserApplistTotal
+
+# Photo
+# slot = 10 + 16 = 26
+class = ExtractSignPhotoId
+
+# slot = 112 + 16 = 128
+class = ExtractSignAuthorId
+
+# slot = 452
+class = ExtractSignAuthorId3
+
+#### XTR
+# photo short play rate slot = 71
+class = ExtractSignPhotoShortPlayRateV2
+
+# slot = 142
+class = ExtractSignWatchTimeExpStat
+
+# slot = 146   
+class = ExtractSignAuthorExpCtr
+
+# author的exp list pxtr slot = 147  list
+class = ExtractSignAuthorExpStat
+
+## slot 551 + 16 = 567  list
+class = ExtractSignCascadeXctr
+
+#slot = 576
+class = ExtractSignCascadePctr
+
+#slot = 577
+class = ExtractSignCascadePlvtr
+
+#slot = 578
+class = ExtractSignCascadePsvr
+
+#slot = 579
+class = ExtractSignCascadePltr
+
+################################################
+
+# slot = 682
+class = ExtractSignPhotoHetuTagOne
+
+# slot = 683
+class = ExtractSignPhotoHetuTagTwo
+
+# slot = 786
+class = ExtractSignPhotoLogClickCount
+
+# slot = 787
+class = ExtractSignPhotoLogLikeCount
+
+
+
+# slot = 94 + 16  = 110
+class = ExtractSignPhotoAge
+
+# slot 141
+class = ExtractSignPhotoDuration
+
+# slot = 152
+class = ExtractSignReason
+
+# slot = 185   list
+class = ExtractSignPhotoTag
+
+# slot = 669 + 16 = 685
+class = ExtractSignPhotoHetuTagOne2
+
+# slot = 670 + 16 = 686
+class =ExtractSignPhotoHetuTagTwo2
+
+# slot = 657 + 16 = 673
+class = ExtractSignPhotoHetuClusterId
+
+# faceId  slot = 1102 + 16 = 1118
+class = ExtractSignPhotoHetuFaceid
+
+
+## Watchtime
+
+# user/photo 双边不同时长下的常短播 slot = 143  list
+class = ExtractSignWatchTimeExpStatOnDuration
+
+## tab bias
+#slot 498
+class = ExtractSignPhotoDuration0
+#slot 603
+class = ExtractSignTabInfo
+
+# req_page 3605 + 16 = 3621
+class = ExtractSignReqTypePage

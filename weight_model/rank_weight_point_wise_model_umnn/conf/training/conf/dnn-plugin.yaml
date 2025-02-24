@@ -1,0 +1,724 @@
+ada_decay_rate: 0.99999
+ada_epsilon: 1e-8
+avg_decay_rate: 0.999993
+back_propagate_input: true
+dense_grad: dense_grad_for_fetch:0
+dense_init_val: dense_init_val_for_fetch:0
+embedding:
+  create_threshold: 0
+  initial_g2sum: 3
+  initial_range: 2
+  learning_rate: 0.01
+  slots_config:
+  - dim: 32
+    dtype: float32
+    input_name: uid_emb
+    slots: 38 34
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: uid_stat
+    slots: 184 35 189
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: did_stat
+    slots: 701 702 703 704 705 706
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: u_mean_stat
+    slots: 950 952 954 956 958 960
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: u_std_stat
+    slots: 951 953 955 957 959 961
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: photo_category_idx0
+    slots: 201 202
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: photo_category_idx1
+    slots: 10201 10202
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_1
+    slots: '901'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_2
+    slots: '902'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_3
+    slots: '903'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_4
+    slots: '904'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_5
+    slots: '905'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_6
+    slots: '906'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_7
+    slots: '907'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_8
+    slots: '908'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_9
+    slots: '909'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_10
+    slots: '910'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_11
+    slots: '911'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_12
+    slots: '912'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_13
+    slots: '913'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_14
+    slots: '914'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_15
+    slots: '915'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_16
+    slots: '916'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_17
+    slots: '917'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_18
+    slots: '918'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_19
+    slots: '919'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_20
+    slots: '920'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_21
+    slots: '921'
+    update_type: gradient
+  version_aware: true
+  weight_bounds:
+  - -10
+  - 10
+extra_params: []
+global_init_range: 0.2
+grad_scale: truediv:0
+graph: ./conf/graph.pb
+graph_extra_outputs: {}
+graph_output_labels:
+- Select:0
+- Select_1:0
+- Select_2:0
+- Select_3:0
+- Select_4:0
+- Select_5:0
+- Select_6:0
+graph_q_valid:
+  clmt_ensemble_score_pos: ones_like:0
+  clmt_weight_label: ones_like:0
+  cmtr_ensemble_score_pos: ones_like:0
+  cmtr_weight_label: ones_like:0
+  ctr_ensemble_score_pos: ones_like:0
+  ctr_weight_label: ones_like:0
+  ftr_ensemble_score_pos: ones_like:0
+  ftr_weight_label: ones_like:0
+  like_ensemble_score_pos: ones_like:0
+  like_weight_label: ones_like:0
+  lvtr_ensemble_score_pos: ones_like:0
+  lvtr_weight_label: ones_like:0
+  wtr_ensemble_score_pos: ones_like:0
+  wtr_weight_label: ones_like:0
+graph_targets:
+- opt
+graph_tensor_mapping:
+  clmt_ensemble_score_pos: Select_14:0
+  clmt_weight_label: Select_11:0
+  cmtr_ensemble_score_pos: Select_14:0
+  cmtr_weight_label: Select_11:0
+  ctr_ensemble_score_pos: Select_14:0
+  ctr_weight_label: Select_13:0
+  ftr_ensemble_score_pos: Select_14:0
+  ftr_weight_label: Select_10:0
+  like_ensemble_score_pos: Select_14:0
+  like_weight_label: Identity:0
+  lvtr_ensemble_score_pos: Select_14:0
+  lvtr_weight_label: Select_12:0
+  wtr_ensemble_score_pos: Select_14:0
+  wtr_weight_label: Select_9:0
+hyperparameter_kconf: null
+is_train_placeholder: is_train:0
+learning_rate: 5.0e-06
+local_init_op: ''
+loss_scale_placeholder: loss_scale:0
+mom_decay_rate: 0.999
+output_hidden_units: update_input continue_normlized_input slide_embedding slide_wide
+  watch_time_wide position_weight_input
+param:
+- coln: 32
+  name: seq_encoder/dense/kernel
+  rown: 168
+  scale_by_rown: true
+- coln: 1
+  name: seq_encoder/dense/bias
+  rank: 1
+  rown: 32
+  scale_by_rown: true
+- coln: 16
+  name: intent_predictor/dense/kernel
+  rown: 128
+  scale_by_rown: true
+- coln: 1
+  name: intent_predictor/dense/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_emb/dense/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_emb/dense/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx0_self_attention/dense/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx0_self_attention/dense_1/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx0_self_attention/dense_2/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx0_self_attention/dense_3/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: pxtr_idx0_self_attention/dense_3/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx1_self_attention/dense/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx1_self_attention/dense_1/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx1_self_attention/dense_2/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx1_self_attention/dense_3/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: pxtr_idx1_self_attention/dense_3/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx0_attention/dense/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx0_attention/dense_1/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx0_attention/dense_2/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx0_attention/dense_3/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_pxtr_idx0_attention/dense_3/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx1_attention/dense/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx1_attention/dense_1/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx1_attention/dense_2/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx1_attention/dense_3/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_pxtr_idx1_attention/dense_3/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx0/dense/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx0/dense_1/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx0/dense_2/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx0/dense_3/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_category_attention_idx0/dense_3/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx1/dense/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx1/dense_1/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx1/dense_2/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx1/dense_3/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_category_attention_idx1/dense_3/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 6
+  name: projection_idx0/dense/kernel
+  rown: 48
+  scale_by_rown: true
+- coln: 1
+  name: projection_idx0/dense/bias
+  rank: 1
+  rown: 6
+  scale_by_rown: true
+- coln: 6
+  name: projection_idx1/dense/kernel
+  rown: 48
+  scale_by_rown: true
+- coln: 1
+  name: projection_idx1/dense/bias
+  rank: 1
+  rown: 6
+  scale_by_rown: true
+- coln: 32
+  name: seq_encoder/dense/kernel/opt
+  rown: 168
+  scale_by_rown: true
+- coln: 1
+  name: seq_encoder/dense/bias/opt
+  rank: 1
+  rown: 32
+  scale_by_rown: true
+- coln: 16
+  name: intent_predictor/dense/kernel/opt
+  rown: 128
+  scale_by_rown: true
+- coln: 1
+  name: intent_predictor/dense/bias/opt
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_emb/dense/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_emb/dense/bias/opt
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx0_self_attention/dense/kernel/opt
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx0_self_attention/dense_1/kernel/opt
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx0_self_attention/dense_2/kernel/opt
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx0_self_attention/dense_3/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: pxtr_idx0_self_attention/dense_3/bias/opt
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx1_self_attention/dense/kernel/opt
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx1_self_attention/dense_1/kernel/opt
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx1_self_attention/dense_2/kernel/opt
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_idx1_self_attention/dense_3/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: pxtr_idx1_self_attention/dense_3/bias/opt
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx0_attention/dense/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx0_attention/dense_1/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx0_attention/dense_2/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx0_attention/dense_3/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_pxtr_idx0_attention/dense_3/bias/opt
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx1_attention/dense/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx1_attention/dense_1/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx1_attention/dense_2/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_idx1_attention/dense_3/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_pxtr_idx1_attention/dense_3/bias/opt
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx0/dense/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx0/dense_1/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx0/dense_2/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx0/dense_3/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_category_attention_idx0/dense_3/bias/opt
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx1/dense/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx1/dense_1/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx1/dense_2/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_category_attention_idx1/dense_3/kernel/opt
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_category_attention_idx1/dense_3/bias/opt
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 6
+  name: projection_idx0/dense/kernel/opt
+  rown: 48
+  scale_by_rown: true
+- coln: 1
+  name: projection_idx0/dense/bias/opt
+  rank: 1
+  rown: 6
+  scale_by_rown: true
+- coln: 6
+  name: projection_idx1/dense/kernel/opt
+  rown: 48
+  scale_by_rown: true
+- coln: 1
+  name: projection_idx1/dense/bias/opt
+  rank: 1
+  rown: 6
+  scale_by_rown: true
+q_label:
+- auc_set: auc
+  label: Select:0
+  name: like_weight_label
+- auc_set: auc
+  label: Select_1:0
+  name: wtr_weight_label
+- auc_set: auc
+  label: Select_2:0
+  name: ftr_weight_label
+- auc_set: auc
+  label: Select_3:0
+  name: cmtr_weight_label
+- auc_set: auc
+  label: Select_4:0
+  name: clmt_weight_label
+- auc_set: auc
+  label: Select_5:0
+  name: lvtr_weight_label
+- auc_set: auc
+  label: Select_6:0
+  name: ctr_weight_label
+- auc_set: auc
+  label: Select:0
+  name: like_ensemble_score_pos
+- auc_set: auc
+  label: Select_1:0
+  name: wtr_ensemble_score_pos
+- auc_set: auc
+  label: Select_2:0
+  name: ftr_ensemble_score_pos
+- auc_set: auc
+  label: Select_3:0
+  name: cmtr_ensemble_score_pos
+- auc_set: auc
+  label: Select_4:0
+  name: clmt_ensemble_score_pos
+- auc_set: auc
+  label: Select_5:0
+  name: lvtr_ensemble_score_pos
+- auc_set: auc
+  label: Select_6:0
+  name: ctr_ensemble_score_pos
+q_names: like_weight_label wtr_weight_label ftr_weight_label cmtr_weight_label clmt_weight_label
+  lvtr_weight_label ctr_weight_label like_ensemble_score_pos wtr_ensemble_score_pos
+  ftr_ensemble_score_pos cmtr_ensemble_score_pos clmt_ensemble_score_pos lvtr_ensemble_score_pos
+  ctr_ensemble_score_pos
+sparse_grad: sparse_grad_for_fetch:0
+sparse_grad_scale: truediv_1:0
+step_placeholder: step:0
+summary:
+- len: 1912
+  name: base_summary
+- len: 2072
+  name: stub_summary
+summary_decay_rate: 0.999999
+summary_init_n: 1e4
+summary_init_squared_sum: 1e4
+summary_squared_sum_epsilon: 1e-4
+test_layers_at_joining: join join_forward update update_forward
+test_layers_at_updating: update update_forward
+test_mode: false
+train_layers_at_joining: join
+train_layers_at_updating: update
+use_sparse_indice: false
+vec_input:
+- common: false
+  dim: 1
+  name: pltr_idx0
+- common: false
+  dim: 1
+  name: pwtr_idx0
+- common: false
+  dim: 1
+  name: pftr_idx0
+- common: false
+  dim: 1
+  name: pcmtr_idx0
+- common: false
+  dim: 1
+  name: plvtr_idx0
+- common: false
+  dim: 1
+  name: pctr_idx0
+- common: false
+  dim: 1
+  name: pltr_idx1
+- common: false
+  dim: 1
+  name: pwtr_idx1
+- common: false
+  dim: 1
+  name: pftr_idx1
+- common: false
+  dim: 1
+  name: pcmtr_idx1
+- common: false
+  dim: 1
+  name: plvtr_idx1
+- common: false
+  dim: 1
+  name: pctr_idx1
+- common: false
+  dim: 1
+  name: level_reward_idx0
+- common: false
+  dim: 1
+  name: level_reward_idx1
+- common: false
+  dim: 1
+  name: like_idx0
+- common: false
+  dim: 1
+  name: like_idx1
+- common: false
+  dim: 1
+  name: follow_idx0
+- common: false
+  dim: 1
+  name: follow_idx1
+- common: false
+  dim: 1
+  name: forward_idx0
+- common: false
+  dim: 1
+  name: forward_idx1
+- common: false
+  dim: 1
+  name: comment_idx0
+- common: false
+  dim: 1
+  name: comment_idx1
+- common: false
+  dim: 1
+  name: click_comment_button_idx0
+- common: false
+  dim: 1
+  name: click_comment_button_idx1
+- common: false
+  dim: 1
+  name: long_view_idx0
+- common: false
+  dim: 1
+  name: long_view_idx1
+- common: false
+  dim: 1
+  name: effective_view_idx0
+- common: false
+  dim: 1
+  name: effective_view_idx1
+with_kai: true

@@ -1,0 +1,99 @@
+mio : conf/mio.yaml
+kai_conf: ./kai_conf.json
+kai_ps:
+    push_shw_normalize: true
+
+minibatch_size : 8192
+
+# 细分评估指标的名字，配合 send_to_mio_learner 的 eval_attrs 使用
+# sub_auc_set: male female hot thanos nebula
+
+create_clk_prob : 1
+create_nonclk_prob : 1
+
+# 指定特定 slot 的准入逐出
+# select_prob_slots : 
+#     slots : 1 2 3 10 11 12 8 63 64 65 66 86 154 155
+#     create_clk_prob : 0.2
+#     create_nonclk_prob : 0.2
+#     delete_threshold : 8
+#     base_threshold : 150
+
+# 两天不见就删
+# photoid_slots : 11 32 39 63 65 88 89 90 91 92 96 94 6 78 79 97
+
+# 永远不删
+userid_slots : 34 35 38 184 189
+
+# embedding 的逐出
+delete_threshold : 2
+max_delete_threshold : 50
+delete_after_unseen_days : 7
+max_features : 10000000000
+max_load_factor: 0.8
+
+# worker 间 load balance，评估一定要关，不然不准
+load_balance : true
+
+# 别超过 4096
+# slots: 34 38 945 947 26 128 682 683
+
+eval_runner :
+    pipeline : conf/cofea_reader.json
+    # begin_time: "2021-08-17"
+    # end_time: "2021-08-17"
+    # model_done_file_path: "hdfs:///home/reco_5/mpi/slide_related_mc/"
+    # eval_data_path: "part-m-*00.snappy#2021-05-03#2021-05-04#no_next=ignore&step=86400"
+    # model_done_file_path: "./conf/done_list"
+
+uniform_runner :
+
+    sparse_lr: 0.001
+    sparse_param:
+        grad_clip: 5
+    dense_lr: 0.0001
+    dense_param:
+        grad_clip: 5
+        
+    pipeline : conf/cofea_reader.json
+    read_thread_num : 36
+
+    base_save_threshold : 100
+    delta_save_threshold : 1.5
+
+    # btq name，也用于模型的 id
+    message_queue_name : slide_multi_task_interact_v1_rank_interact_weight_model
+    # 离线训练改成 false
+    is_write_mq : false
+
+    global_shuffle: true
+    local_shuffle_size: 100000
+
+    # 模型存储索引
+    # done_file_path : "viewfs:///home/reco_5/mpi/mtl_interact/gpu"
+    # 几乎没用，除了控制存 checkpoint 开始时间
+    # delta_done_file_path : "viewfs:/home/reco_5/slide_related_mc/done/delta_done_list"
+    # 模型存储位置
+    # 之前ckp 存在 variant_rerank下
+    # hadoop fs -mkdir /home/reco_5/mpi/mtl_interact 两级目录需要自己手动新建一级
+    # hadoop fs -rm -r /home/reco_wl/mpi/wanghui11/fr_fatigue
+    # /home/reco_5/mpi/mtl_interact/add_gnn_fea
+    model_path : "viewfs:///home/reco_wl/mpi/liuxiaoyan05/rank_interact_weight_point_wise_model_relative_quantile"
+    # 模型存储索引
+    # done_file_path : "viewfs:///home/reco_5/mpi/mtl_interact/gpu"
+    # 几乎没用，除了控制存 checkpoint 开始时间
+    # delta_done_file_path : "viewfs:/home/reco_5/slide_related_mc/done/delta_done_list
+    # 训练开始时间
+    # begin_time: '2021-08-10'
+    # end_time: '2021-08-16'
+    
+    save_model_interval_hour: 2
+
+    pass_size : 300000
+    channel_capacity : 200000
+    keep_checkpoint_size : 2
+
+cvm_plugin :
+    decay_rate : 0.90 #NOTE 1 week half reduce
+
+dnn_plugin : ./conf/dnn-plugin.yaml

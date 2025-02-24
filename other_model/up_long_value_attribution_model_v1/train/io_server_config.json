@@ -1,0 +1,5 @@
+{
+  "classify": "sample_server",
+  "dragonfly_json_path": "./cofea_reader.json",
+  "build_batch_thread_num": 64
+}

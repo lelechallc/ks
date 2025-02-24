@@ -1,0 +1,345 @@
+ada_decay_rate: 0.99999
+ada_epsilon: 1e-8
+avg_decay_rate: 0.999993
+back_propagate_input: true
+dense_grad: dense_grad_for_fetch:0
+dense_init_val: dense_init_val_for_fetch:0
+embedding:
+  create_threshold: 0
+  initial_g2sum: 3
+  initial_range: 2
+  learning_rate: 0.01
+  slots_config:
+  - dim: 32
+    dtype: float32
+    input_name: uid_emb
+    slots: 38 34
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: uid_stat
+    slots: 184 35 189
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: did_stat
+    slots: 701 702 703 704 705 706
+    update_type: gradient
+  - dim: 32
+    dtype: float32
+    input_name: pid_emb
+    slots: 26 128
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: pid_xtr
+    slots: 576 577 578 579 567 146 147 71 142
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: pid_stat
+    slots: 152 110 185 685 686 673 1118 141
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: pid_gate
+    slots: 682 683 786 787
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: pid_pxtr
+    slots: 1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 1011 1012
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    input_name: top_bias
+    slots: 498 143 603 3621
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_1
+    slots: '901'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_2
+    slots: '902'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_3
+    slots: '903'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_4
+    slots: '904'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_5
+    slots: '905'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_6
+    slots: '906'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_7
+    slots: '907'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_8
+    slots: '908'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_9
+    slots: '909'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_10
+    slots: '910'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_11
+    slots: '911'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_12
+    slots: '912'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_13
+    slots: '913'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_14
+    slots: '914'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_15
+    slots: '915'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_16
+    slots: '916'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_17
+    slots: '917'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_18
+    slots: '918'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_19
+    slots: '919'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_20
+    slots: '920'
+    update_type: gradient
+  - dim: 8
+    dtype: float32
+    expand: 20
+    input_name: uid_action_list_21
+    slots: '921'
+    update_type: gradient
+  version_aware: true
+  weight_bounds:
+  - -10
+  - 10
+extra_params: []
+global_init_range: 0.2
+grad_scale: truediv:0
+graph: ./conf/graph.pb
+graph_extra_outputs: {}
+graph_output_labels:
+- Reshape_87:0
+graph_q_valid:
+  interact_label: Reshape_88:0
+graph_targets:
+- opt
+graph_tensor_mapping:
+  interact_label: Identity:0
+hyperparameter_kconf: null
+is_train_placeholder: is_train:0
+learning_rate: 5.0e-06
+local_init_op: ''
+loss_scale_placeholder: loss_scale:0
+mom_decay_rate: 0.999
+output_hidden_units: update_input continue_normlized_input slide_embedding slide_wide
+  watch_time_wide position_weight_input
+param:
+- coln: 32
+  name: seq_encoder/dense/kernel
+  rown: 168
+  scale_by_rown: true
+- coln: 1
+  name: seq_encoder/dense/bias
+  rank: 1
+  rown: 32
+  scale_by_rown: true
+- coln: 16
+  name: intent_predictor/dense/kernel
+  rown: 32
+  scale_by_rown: true
+- coln: 1
+  name: intent_predictor/dense/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_emb/dense/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_emb/dense/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_self_attention/dense/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_self_attention/dense_1/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_self_attention/dense_2/kernel
+  rown: 6
+  scale_by_rown: true
+- coln: 16
+  name: pxtr_self_attention/dense_3/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: pxtr_self_attention/dense_3/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_attention/dense/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_attention/dense_1/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_attention/dense_2/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 16
+  name: intent_aware_cross_pxtr_attention/dense_3/kernel
+  rown: 16
+  scale_by_rown: true
+- coln: 1
+  name: intent_aware_cross_pxtr_attention/dense_3/bias
+  rank: 1
+  rown: 16
+  scale_by_rown: true
+- coln: 6
+  name: projection/dense/kernel
+  rown: 32
+  scale_by_rown: true
+- coln: 1
+  name: projection/dense/bias
+  rank: 1
+  rown: 6
+  scale_by_rown: true
+- coln: 1
+  name: ensemble_score/dense/kernel
+  rown: 1
+  scale_by_rown: true
+- coln: 1
+  name: ensemble_score/dense/bias
+  rank: 1
+  rown: 1
+  scale_by_rown: true
+q_label:
+- auc_set: auc
+  label: Reshape_87:0
+  name: interact_label
+q_names: interact_label
+sparse_grad: sparse_grad_for_fetch:0
+sparse_grad_scale: truediv_1:0
+step_placeholder: step:0
+summary:
+- len: 1912
+  name: base_summary
+- len: 2072
+  name: stub_summary
+summary_decay_rate: 0.999999
+summary_init_n: 1e4
+summary_init_squared_sum: 1e4
+summary_squared_sum_epsilon: 1e-4
+test_layers_at_joining: join join_forward update update_forward
+test_layers_at_updating: update update_forward
+test_mode: false
+train_layers_at_joining: join
+train_layers_at_updating: update
+use_sparse_indice: false
+vec_input:
+- common: false
+  dim: 1
+  name: pltr
+- common: false
+  dim: 1
+  name: pwtr
+- common: false
+  dim: 1
+  name: pftr
+- common: false
+  dim: 1
+  name: pcmtr
+- common: false
+  dim: 1
+  name: pcltr
+- common: false
+  dim: 1
+  name: pdtr
+- common: false
+  dim: 1
+  name: interact_label
+- common: false
+  dim: 1
+  name: interact_weight
+with_kai: true

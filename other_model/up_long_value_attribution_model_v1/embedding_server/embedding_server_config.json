@@ -1,0 +1,19 @@
+{
+  "force_expire_timet": 2592000,
+  "kess_cluster_config": {
+    "default": "PRODUCTION"
+  },
+  "kess_service_config": {
+    "default": "grpc_AuthorLongtermValueV2Emb"
+  },
+  "kess_weight": {
+    "default": 1000
+  },
+  "queue_prefix": "slide_multi_task_interact_v2_ua_long_value",
+  "queue_shard_num": 2,
+  "queue_suffixes": {},
+  "read_slots": "",
+  "shard_offset": 0,
+  "sign_format": "mio",
+  "thread_num": 65
+}
